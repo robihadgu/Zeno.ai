@@ -1,0 +1,139 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ─── B&W Design tokens ──────────────────────────── */
+:root {
+  --black:      #050505;
+  --black-2:    #0A0A0A;
+  --black-3:    #111111;
+  --black-4:    #161616;
+  --border-dk:  rgba(255,255,255,0.07);
+  --border-lt:  #E5E5E5;
+  --white:      #FFFFFF;
+  --off-white:  #F8F8F8;
+  --gray-100:   #F0F0F0;
+  --gray-200:   #E0E0E0;
+  --gray-400:   #999999;
+  --gray-500:   #777777;
+  --gray-600:   #555555;
+  --gray-700:   #333333;
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md:  0 4px 20px rgba(0,0,0,0.10);
+  --shadow-lg:  0 12px 48px rgba(0,0,0,0.14);
+  --shadow-xl:  0 24px 80px rgba(0,0,0,0.18);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+@media (pointer: fine) { *, a, button { cursor: none !important; } }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Inter', -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ─── Tilt card ────────────────────────────────────── */
+.tilt-card {
+  transition: transform 0.6s cubic-bezier(0.23,1,0.32,1), box-shadow 0.3s ease;
+  will-change: transform;
+}
+.card-shine {
+  position: absolute; inset: 0; border-radius: inherit;
+  pointer-events: none; opacity: 0;
+  transition: opacity 0.2s, background 0.1s; z-index: 1;
+}
+
+/* ─── Scroll fade ──────────────────────────────────── */
+.fade-up {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.23,1,0.32,1), transform 0.7s cubic-bezier(0.23,1,0.32,1);
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── Message slide-in ─────────────────────────────── */
+@keyframes msgIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.msg-in { animation: msgIn 0.3s ease forwards; }
+
+/* ─── Dot blink (typing indicator) ─────────────────── */
+@keyframes dotBounce {
+  0%,80%,100% { transform: translateY(0);    opacity: 0.4; }
+  40%          { transform: translateY(-4px); opacity: 1;   }
+}
+
+/* ─── Float animation ──────────────────────────────── */
+@keyframes float  { 0%,100%{ transform:translateY(0);    } 50%{ transform:translateY(-10px); } }
+@keyframes floatB { 0%,100%{ transform:translateY(-4px); } 50%{ transform:translateY(6px);   } }
+
+/* ─── Phone hero float (scroll-section) ─────────────── */
+@keyframes phoneFloat {
+  0%,100% { transform: translateY(-10px); }
+  50%     { transform: translateY(10px);  }
+}
+.phone-float {
+  animation: phoneFloat 3s ease-in-out infinite;
+  /* Ensure the float layer never triggers page-level repaints */
+  will-change: transform;
+}
+
+/* ─── Shimmer (for hero headline) ─────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+.text-shimmer {
+  background: linear-gradient(90deg, #fff 0%, #aaa 40%, #fff 55%, #ccc 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 6s linear infinite;
+}
+
+/* ─── Pulse dot ────────────────────────────────────── */
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 rgba(255,255,255,0.5); }
+  70%  { box-shadow: 0 0 0 8px rgba(255,255,255,0);  }
+  100% { box-shadow: 0 0 0 0 rgba(255,255,255,0);  }
+}
+@keyframes pulse-ring-dk {
+  0%   { box-shadow: 0 0 0 0 rgba(0,0,0,0.4); }
+  70%  { box-shadow: 0 0 0 8px rgba(0,0,0,0); }
+  100% { box-shadow: 0 0 0 0 rgba(0,0,0,0);  }
+}
+
+/* ─── Click ripple ─────────────────────────────────── */
+@keyframes ripple-out {
+  0%   { transform: translate(-50%,-50%) scale(1);   opacity: 1; }
+  100% { transform: translate(-50%,-50%) scale(55);  opacity: 0; }
+}
+
+/* ─── Glass ────────────────────────────────────────── */
+.glass-dark {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.07);
+}
+
+/* ─── Dot grid ─────────────────────────────────────── */
+.dot-grid::before {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.dot-grid-lt::before {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ─── Scrollbar ────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--off-white); }
+::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
