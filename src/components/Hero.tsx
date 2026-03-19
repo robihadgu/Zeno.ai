@@ -470,7 +470,7 @@ export default function Hero() {
           transition={{ delay: 0.2, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           style={{ fontSize: '17px', color: 'rgba(255,255,255,0.42)', lineHeight: 1.75, maxWidth: '580px', margin: '0 auto 44px' }}
         >
-          Aurum builds intelligent automation systems for local businesses. We turn missed calls,
+          Zeno builds intelligent automation systems for local businesses. We turn missed calls,
           after-hours inquiries, and website visitors into{' '}
           <span style={{ color: 'rgba(255,255,255,0.8)', fontWeight: 500 }}>booked appointments</span> — automatically.
         </motion.p>
