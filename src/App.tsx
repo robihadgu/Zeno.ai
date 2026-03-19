@@ -22,6 +22,8 @@ import Pricing from './components/Pricing'
 import FinalCTA from './components/FinalCTA'
 import Footer from './components/Footer'
 
+const isDesktop = typeof window !== 'undefined' && window.matchMedia('(pointer: fine)').matches;
+
 class ErrorBoundary extends Component<{children:ReactNode},{error:string|null}> {
   state = { error: null }
   static getDerivedStateFromError(e: Error) { return { error: e.message + '\n' + e.stack } }
@@ -37,14 +39,14 @@ export default function App() {
     <ErrorBoundary>
       <LoadingScreen />
       <ConfettiBurst />
-      <SmoothScroll />
-      <div style={{ background: '#050505', minHeight: '100vh', overflowX: 'hidden', cursor: 'none' }}>
-        <ParticleField />
-        <CustomCursor />
+      {isDesktop && <SmoothScroll />}
+      <div style={{ background: '#050505', minHeight: '100vh', overflowX: 'hidden', cursor: isDesktop ? 'none' : 'auto' }}>
+        {isDesktop && <ParticleField />}
+        {isDesktop && <CustomCursor />}
         <ScrollProgress />
         <GrainOverlay />
-        <MagneticEffect />
-        <CursorSpotlight />
+        {isDesktop && <MagneticEffect />}
+        {isDesktop && <CursorSpotlight />}
         <ClickRipple />
         <BookingModal />
         <Navbar />
