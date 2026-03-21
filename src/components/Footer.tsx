@@ -42,10 +42,10 @@ export default function Footer() {
             <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.25)', lineHeight: 1.6, maxWidth: '170px', marginBottom: '14px' }}>
               All patient data handled with BAA agreements and encrypted storage.
             </p>
-            <a href="mailto:hello@aurumautomation.co" style={{ fontSize: '12px', color: 'rgba(255,255,255,0.5)', textDecoration: 'none', transition: 'color 0.2s' }}
+            <a href="mailto:zenoscale@gmail.com" style={{ fontSize: '12px', color: 'rgba(255,255,255,0.5)', textDecoration: 'none', transition: 'color 0.2s' }}
               onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
               onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.5)')}
-            >hello@aurumautomation.co</a>
+            >zenoscale@gmail.com</a>
           </div>
         </div>
 
