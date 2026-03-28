@@ -7,7 +7,7 @@ declare global {
   }
 }
 
-const CALENDLY_LINK = 'https://calendly.com/zenoscale/30min';
+const CALENDLY_LINK = 'https://calendly.com/zenoautomation/demo';
 
 /* Call this from any button — fires confetti then opens the Calendly popup */
 export const openBooking = () => {

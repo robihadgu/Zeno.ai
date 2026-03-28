@@ -16,17 +16,27 @@ export default function Footer() {
           {/* Links */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '48px' }}>
             {[
-              { heading: 'Services',  links: ['Missed-Call Text Back','AI Receptionist','Review Automation','Appointment Booking'] },
-              { heading: 'Company',   links: ['About','How It Works','Pricing','Contact'] },
+              { heading: 'Services', links: [
+                { label: 'Missed-Call Text Back', href: '#solution' },
+                { label: 'AI Receptionist',       href: '#solution' },
+                { label: 'Review Automation',     href: '#solution' },
+                { label: 'Appointment Booking',   href: '#solution' },
+              ]},
+              { heading: 'Company', links: [
+                { label: 'About',        href: '#'                          },
+                { label: 'How It Works', href: '#solution'                  },
+                { label: 'Pricing',      href: '#pricing'                   },
+                { label: 'Contact',      href: 'mailto:hello@zenoautomation.ai' },
+              ]},
             ].map(col => (
               <div key={col.heading}>
                 <p style={{ fontSize: '10px', fontWeight: 700, color: 'rgba(255,255,255,0.2)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '16px' }}>{col.heading}</p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                   {col.links.map(l => (
-                    <a key={l} href="#" style={{ fontSize: '13px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none', transition: 'color 0.2s' }}
+                    <a key={l.label} href={l.href} style={{ fontSize: '13px', color: 'rgba(255,255,255,0.35)', textDecoration: 'none', transition: 'color 0.2s' }}
                       onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
                       onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.35)')}
-                    >{l}</a>
+                    >{l.label}</a>
                   ))}
                 </div>
               </div>
@@ -42,10 +52,10 @@ export default function Footer() {
             <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.25)', lineHeight: 1.6, maxWidth: '170px', marginBottom: '14px' }}>
               All customer data handled with encrypted messaging and secure storage.
             </p>
-            <a href="mailto:hello@zeno.ai" style={{ fontSize: '12px', color: 'rgba(255,255,255,0.5)', textDecoration: 'none', transition: 'color 0.2s' }}
+            <a href="mailto:hello@zenoautomation.ai" style={{ fontSize: '12px', color: 'rgba(255,255,255,0.5)', textDecoration: 'none', transition: 'color 0.2s' }}
               onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
               onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.5)')}
-            >hello@zeno.ai</a>
+            >hello@zenoautomation.ai</a>
           </div>
         </div>
 
@@ -55,11 +65,14 @@ export default function Footer() {
             © 2026 Zeno. All rights reserved.
           </p>
           <div style={{ display: 'flex', gap: '20px' }}>
-            {['Privacy Policy','Terms of Service'].map(l => (
-              <a key={l} href="#" style={{ fontSize: '12px', color: 'rgba(255,255,255,0.2)', textDecoration: 'none', transition: 'color 0.2s' }}
+            {[
+              { label: 'Privacy Policy',    href: '/privacy-policy'    },
+              { label: 'Terms of Service',  href: '/terms-of-service'  },
+            ].map(l => (
+              <a key={l.label} href={l.href} style={{ fontSize: '12px', color: 'rgba(255,255,255,0.2)', textDecoration: 'none', transition: 'color 0.2s' }}
                 onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.5)')}
                 onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.2)')}
-              >{l}</a>
+              >{l.label}</a>
             ))}
           </div>
         </div>

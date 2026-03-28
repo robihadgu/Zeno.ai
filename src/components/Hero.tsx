@@ -542,7 +542,7 @@ export default function Hero() {
             <div style={{ display: 'flex', gap: '1px', marginBottom: '2px' }}>
               {'★★★★★'.split('').map((s, i) => <span key={i} style={{ color: '#fff', fontSize: '11px' }}>{s}</span>)}
             </div>
-            <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.4)', fontWeight: 500 }}>Trusted by 200+ local businesses</p>
+            <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.4)', fontWeight: 500 }}>Trusted by local businesses across Northern Virginia</p>
           </div>
         </motion.div>
       </div>
