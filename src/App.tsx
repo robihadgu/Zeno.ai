@@ -15,6 +15,7 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import TrustBar from './components/TrustBar'
 import Problem from './components/Problem'
+import MissedCallStory from './components/MissedCallStory'
 import Solution from './components/Solution'
 import WhyUs from './components/WhyUs'
 import Testimonials from './components/Testimonials'
@@ -53,6 +54,7 @@ export default function App() {
         <Hero />
         <TrustBar />
         <Problem />
+        <MissedCallStory />
         <Solution />
         <WhyUs />
         <Testimonials />
