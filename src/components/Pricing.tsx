@@ -39,7 +39,7 @@ const FAQS = [
   { q: 'What does the 14-day free trial include?',
     a: 'Your full system — built, trained, and live. You get the complete Growth or Elite experience for 14 days at no cost. If you do not see value, you pay nothing.' },
   { q: 'Do you work with my existing booking software?',
-    a: 'Yes. Zeno integrates with Google Calendar, Calendly, Acuity, Mindbody, Boulevard, Square Appointments, Vagaro, and 20+ other platforms.' },
+    a: 'Yes. Zeno integrates with Google Calendar, Calendly, Acuity, HubSpot, Stripe, Square Appointments, Vagaro, and 20+ other platforms.' },
   { q: 'How long does setup take?',
     a: 'Most clients are fully live within 7 business days of their discovery call. We handle everything — you just show up to your business as usual.' },
   { q: 'What if I need more SMS than my plan includes?',

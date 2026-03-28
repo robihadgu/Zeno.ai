@@ -460,7 +460,7 @@ export default function Hero() {
           style={{ fontSize: 'clamp(40px, 6.5vw, 74px)', fontWeight: 900, color: '#fff', lineHeight: 1.05, letterSpacing: '-2.5px', marginBottom: '22px' }}
         >
           <ScrambleText text="Stop Losing" delay={200} /><br />
-          <span className="text-shimmer"><ScrambleText text="High-Ticket Customers" delay={500} /></span>
+          <span className="text-shimmer"><ScrambleText text="Customers" delay={500} /></span>
           <br /><ScrambleText text="to Missed Calls." delay={820} />
         </motion.h1>
 
@@ -470,9 +470,9 @@ export default function Hero() {
           transition={{ delay: 0.2, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           style={{ fontSize: '17px', color: 'rgba(255,255,255,0.42)', lineHeight: 1.75, maxWidth: '580px', margin: '0 auto 44px' }}
         >
-          Zeno builds intelligent automation systems for local businesses. We turn missed calls,
+          Zeno builds AI-powered systems that run your front desk 24/7. We turn missed calls,
           after-hours inquiries, and website visitors into{' '}
-          <span style={{ color: 'rgba(255,255,255,0.8)', fontWeight: 500 }}>booked appointments</span> — automatically.
+          <span style={{ color: 'rgba(255,255,255,0.8)', fontWeight: 500 }}>booked appointments</span> — automatically and without extra staff.
         </motion.p>
 
         {/* CTAs */}

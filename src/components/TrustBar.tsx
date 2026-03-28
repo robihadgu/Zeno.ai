@@ -1,11 +1,11 @@
 import { useEffect, useRef } from 'react';
 
 const integrations = [
-  { name: 'Mindbody' },
-  { name: 'Boulevard' },
-  { name: 'Mangomint' },
-  { name: 'Zenoti' },
-  { name: 'Jane App' },
+  { name: 'Google Calendar', letter: 'G' },
+  { name: 'Calendly',        letter: 'C' },
+  { name: 'HubSpot',         letter: 'H' },
+  { name: 'Stripe',          letter: 'S' },
+  { name: 'Square',          letter: 'Sq' },
 ];
 
 export default function TrustBar() {
@@ -46,7 +46,7 @@ export default function TrustBar() {
                 onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.background = '#F8F8F8'; (e.currentTarget as HTMLDivElement).style.borderColor = '#E8E8E8'; (e.currentTarget as HTMLDivElement).querySelectorAll('*').forEach((el: Element) => { (el as HTMLElement).style.color = ''; }); }}
               >
                 <div style={{ width: '18px', height: '18px', borderRadius: '4px', background: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <span style={{ color: '#fff', fontSize: '8px', fontWeight: 800 }}>{b.name[0]}</span>
+                  <span style={{ color: '#fff', fontSize: '8px', fontWeight: 800 }}>{b.letter}</span>
                 </div>
                 <span style={{ fontSize: '13px', fontWeight: 600, color: '#333' }}>{b.name}</span>
               </div>
@@ -63,7 +63,7 @@ export default function TrustBar() {
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
               <polyline points="9 12 11 14 15 10"/>
             </svg>
-            <span style={{ fontSize: '12px', fontWeight: 700, color: '#fff' }}>HIPAA Compliant</span>
+            <span style={{ fontSize: '12px', fontWeight: 700, color: '#fff' }}>SOC 2 Ready · Encrypted by Default</span>
           </div>
         </div>
       </div>

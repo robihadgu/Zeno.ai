@@ -2,10 +2,10 @@ import { useEffect, useRef } from 'react';
 
 const tiles = [
   { icon: '🛠', title: '100% Done-For-You',        body: "We handle every aspect — AI training, integrations, testing, launch. You give us 30 minutes. We do the rest." },
-  { icon: '🔒', title: 'HIPAA Compliant Default',  body: "BAA agreements, encrypted messaging, compliant storage — every system is architected with patient privacy as a non-negotiable." },
-  { icon: '⚙️', title: 'Deep Integrations',         body: "We connect directly to Mindbody, Boulevard, Zenoti, and Mangomint. No disruption to your current workflows." },
+  { icon: '🔒', title: 'Privacy-First Default',     body: "Encrypted messaging, secure data storage, and privacy-first architecture — every system is built with your customers' data protected." },
+  { icon: '⚙️', title: 'Deep Integrations',         body: "We connect directly to Google Calendar, Calendly, HubSpot, Stripe, and 20+ other platforms. No disruption to your current workflows." },
   { icon: '📈', title: 'Measurable ROI',            body: "Every client receives a monthly report tracking calls recovered, bookings generated, reviews, and estimated revenue impact." },
-  { icon: '🎯', title: 'Med Spa Specialists Only',  body: "We don't work with restaurants or law firms. Our entire focus is aesthetic practices — our AI already knows your industry." },
+  { icon: '🎯', title: 'Local Business Specialists', body: "We focus exclusively on service-based local businesses. Our AI already knows your industry's language, pricing patterns, and customer behavior." },
   { icon: '🤝', title: 'Ongoing Partnership',       body: "We monitor systems, update your AI's knowledge as your menu changes, and proactively optimize — long-term partners." },
 ];
 
@@ -34,13 +34,13 @@ export default function WhyUs() {
               <span style={{ fontSize: '12px', fontWeight: 600, color: 'rgba(255,255,255,0.6)' }}>Why Zeno</span>
             </div>
             <h2 style={{ fontSize: 'clamp(28px, 4vw, 46px)', fontWeight: 800, color: '#fff', letterSpacing: '-1.5px', lineHeight: 1.12 }}>
-              We aren't a marketing agency.<br />
-              <span style={{ color: 'rgba(255,255,255,0.35)', fontWeight: 400 }}>We are your operations partner.</span>
+              We are not a marketing agency.<br />
+              <span style={{ color: 'rgba(255,255,255,0.35)', fontWeight: 400 }}>We are your 24/7 operations partner.</span>
             </h2>
           </div>
           <div className="fade-up">
             <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.4)', lineHeight: 1.8, marginBottom: '24px' }}>
-              We don't sell "leads" or run ads. We fix the systems causing you to lose patients you're already attracting. We patch the leaky bucket first.
+              We don't sell "leads" or run ads. We fix the systems causing you to lose customers you're already attracting. We patch the leaky bucket first — then help it overflow.
             </p>
             <a href="#cta" style={{
               display: 'inline-flex', alignItems: 'center', gap: '8px',

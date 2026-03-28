@@ -33,19 +33,19 @@ export default function Footer() {
             ))}
           </div>
 
-          {/* Contact + HIPAA */}
+          {/* Contact + Security */}
           <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '12px', padding: '20px 24px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '7px', marginBottom: '10px' }}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-              <span style={{ fontSize: '12px', fontWeight: 700, color: '#fff' }}>HIPAA Compliant</span>
+              <span style={{ fontSize: '12px', fontWeight: 700, color: '#fff' }}>Encrypted & Secure</span>
             </div>
             <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.25)', lineHeight: 1.6, maxWidth: '170px', marginBottom: '14px' }}>
-              All patient data handled with BAA agreements and encrypted storage.
+              All customer data handled with encrypted messaging and secure storage.
             </p>
-            <a href="mailto:zenoscale@gmail.com" style={{ fontSize: '12px', color: 'rgba(255,255,255,0.5)', textDecoration: 'none', transition: 'color 0.2s' }}
+            <a href="mailto:hello@zeno.ai" style={{ fontSize: '12px', color: 'rgba(255,255,255,0.5)', textDecoration: 'none', transition: 'color 0.2s' }}
               onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
               onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.5)')}
-            >zenoscale@gmail.com</a>
+            >hello@zeno.ai</a>
           </div>
         </div>
 

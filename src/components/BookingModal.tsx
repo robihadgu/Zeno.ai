@@ -242,7 +242,7 @@ export default function BookingModal() {
                         <input ref={firstRef} required value={form.name} onChange={set('name')} placeholder="Jane Smith" style={base} onFocus={onFocus} onBlur={onBlur} />
                       </Field>
                       <Field label="Practice Name" required>
-                        <input required value={form.business} onChange={set('business')} placeholder="Lumina Med Spa" style={base} onFocus={onFocus} onBlur={onBlur} />
+                        <input required value={form.business} onChange={set('business')} placeholder="Lumina Wellness" style={base} onFocus={onFocus} onBlur={onBlur} />
                       </Field>
                     </div>
                     <Field label="Email" required>
@@ -285,7 +285,7 @@ export default function BookingModal() {
                     </button>
 
                     <p style={{ textAlign: 'center', fontSize: '11px', color: 'rgba(255,255,255,0.18)', marginTop: '2px' }}>
-                      🔒 &nbsp;HIPAA compliant &nbsp;·&nbsp; No spam &nbsp;·&nbsp; No contracts
+                      🔒 &nbsp;Encrypted & Secure &nbsp;·&nbsp; No spam &nbsp;·&nbsp; No contracts
                     </p>
                   </form>
                 </motion.div>

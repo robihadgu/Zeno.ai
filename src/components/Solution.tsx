@@ -89,10 +89,10 @@ function MissedCallUI() {
 
 function ChatbotUI() {
   const msgs = [
-    { from: 'user', text: 'Hi! How much is lip filler?' },
-    { from: 'bot',  text: 'Lip filler starts at $550 for 0.5ml. We also have a New Patient Special — $100 off your first treatment this month 🎉' },
-    { from: 'user', text: 'Any Saturday slots?' },
-    { from: 'bot',  text: "Saturday 10am and 2pm are open! Want me to hold one? 😊" },
+    { from: 'user', text: 'Hi! What services do you offer?' },
+    { from: 'bot',  text: 'Great question! We offer missed-call recovery, 24/7 AI chat, appointment booking, and review automation. New clients get a free 14-day trial 🎉' },
+    { from: 'user', text: 'How do I get started?' },
+    { from: 'bot',  text: "Easy! Book a free 20-min demo and we'll have your system live in 7 days. Want me to grab a time? 😊" },
   ];
   return (
     <TiltPanel style={{ padding: 0 }}>
@@ -156,18 +156,18 @@ function ReviewUI() {
 const features = [
   {
     tag: '01 — Missed-Call Text Back',
-    title: 'Engage every missed call in seconds.',
-    headline: 'Before they call your competitor.',
-    body: 'The moment a call goes unanswered, our system fires off a personalized text on your behalf. It greets the patient, introduces your practice, and opens a conversation — all in under 5 seconds, 24/7.',
-    bullets: ['Instant automated response to every missed call','Personalized with your practice name and voice','Conversations continue until the patient is booked','Full conversation history in your dashboard'],
+    title: 'Respond to every missed call in under 5 seconds.',
+    headline: 'Before they Google someone else.',
+    body: 'The moment a call goes unanswered, Zeno fires off a personalized text on your behalf. It greets the customer, introduces your business, and opens a conversation — all in under 5 seconds, 24/7.',
+    bullets: ['Instant automated response to every missed call','Personalized with your business name and voice','Conversations continue until the customer is booked','Full conversation history in your dashboard'],
     visual: <MissedCallUI />,
   },
   {
     tag: '02 — 24/7 AI Receptionist',
-    title: 'A front desk that books at 3 AM.',
-    headline: 'Trained on your treatments, pricing, and FAQs.',
-    body: 'We train a custom AI chatbot on your specific services, pricing, and protocols. Deploy it on your website, Instagram DMs, and Facebook Messenger. It qualifies leads and drops bookings into your calendar.',
-    bullets: ['Trained on your full treatment menu and pricing','Deployed across website, Instagram, and Facebook','Books directly into Mindbody, Boulevard, or Zenoti','Escalates complex questions to your team instantly'],
+    title: 'A receptionist that works at 3 AM.',
+    headline: 'Trained on your services, pricing, and FAQs.',
+    body: 'We train a custom AI on your specific services, pricing, and FAQs. Deploy it on your website, Instagram DMs, and Facebook Messenger. It qualifies leads and drops bookings directly into your calendar.',
+    bullets: ['Trained on your full treatment menu and pricing','Deployed across website, Instagram, and Facebook','Books directly into your calendar system','Escalates complex questions to your team instantly'],
     visual: <ChatbotUI />,
   },
   {
@@ -175,7 +175,7 @@ const features = [
     title: 'Turn every treatment into a 5-star review.',
     headline: 'Automatically, without lifting a finger.',
     body: "Our system monitors your booking software and sends a warm, personalized review request via SMS 24 hours after each appointment. Your Google ranking improves on autopilot.",
-    bullets: ['Triggered automatically from your booking system','Sent 24 hours post-treatment for peak engagement','Personalized with patient name and treatment','Direct link to your Google Business profile'],
+    bullets: ['Triggered automatically from your booking system','Sent 24 hours post-appointment for peak engagement','Personalized with customer name and service','Direct link to your Google Business profile'],
     visual: <ReviewUI />,
   },
 ];
@@ -202,10 +202,10 @@ export default function Solution() {
             <span style={{ fontSize: '12px', fontWeight: 600, color: 'rgba(255,255,255,0.6)' }}>The Solution</span>
           </div>
           <h2 style={{ fontSize: 'clamp(28px, 4vw, 46px)', fontWeight: 800, color: '#fff', letterSpacing: '-1.5px', lineHeight: 1.12, marginBottom: '16px' }}>
-            A Front Desk That <span style={{ color: 'rgba(255,255,255,0.35)', fontWeight: 400 }}>Never Sleeps.</span>
+            An AI System That <span style={{ color: 'rgba(255,255,255,0.35)', fontWeight: 400 }}>Never Stops Working.</span>
           </h2>
           <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.4)', maxWidth: '480px', margin: '0 auto', lineHeight: 1.7 }}>
-            Three integrated systems that recover lost revenue, fill your calendar, and build your reputation — automatically.
+            Three integrated systems that recover lost revenue, fill your calendar, and build your reputation — running 24/7 without extra staff.
           </p>
         </div>
 

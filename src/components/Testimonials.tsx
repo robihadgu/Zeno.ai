@@ -8,12 +8,12 @@ const testimonials = [
     result: '+$3,200 recovered week 1', initials: 'LP',
   },
   {
-    quote: "The AI chatbot answers questions better than some of my staff, honestly. It knows our full treatment menu, pricing, and contraindications. My front desk now focuses on patients in the building instead of the same 5 questions on repeat.",
+    quote: "The AI chatbot answers questions better than some of my staff, honestly. It knows our full treatment menu, pricing, and contraindications. My front desk now focuses on customers in the building instead of the same 5 questions on repeat.",
     name: 'Melissa Tran', role: 'Practice Director, Glow Medical Spa', location: 'Tysons Corner, VA',
     result: '60% fewer front desk calls', initials: 'MT',
   },
   {
-    quote: "We went from 43 Google reviews to 201 in under four months. I didn't change anything — Zeno just set up the automated text and it runs itself. Our local ranking jumped and new patient calls doubled.",
+    quote: "We went from 43 Google reviews to 201 in under four months. I didn't change anything — Zeno just set up the automated text and it runs itself. Our local ranking jumped and new customer calls doubled.",
     name: 'James Okoye', role: 'Founder, NoVA Skin & Laser', location: 'Alexandria, VA',
     result: '43 → 201 Google reviews', initials: 'JO',
   },

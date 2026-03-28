@@ -36,11 +36,11 @@ export default function FinalCTA() {
             </div>
 
             <h2 className="fade-up" style={{ fontSize: 'clamp(32px, 5vw, 58px)', fontWeight: 900, color: '#fff', letterSpacing: '-2px', lineHeight: 1.08, marginBottom: '20px' }}>
-              Ready to put your patient<br />acquisition on autopilot?
+              Ready to put your customer<br />acquisition on autopilot?
             </h2>
 
             <p className="fade-up" style={{ fontSize: '17px', color: 'rgba(255,255,255,0.4)', maxWidth: '440px', margin: '0 auto 44px', lineHeight: 1.75 }}>
-              Start with a free 30-minute audit of your patient journey. No pitch, no obligation.
+              Start with a free 20-minute audit of your customer journey. No pitch, no obligation — just clarity on what's costing you revenue.
             </p>
 
             <div className="fade-up" style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '44px' }}>
@@ -73,10 +73,10 @@ export default function FinalCTA() {
 
             <div className="fade-up" style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', justifyContent: 'center', paddingTop: '28px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
               {[
-                { icon: '🔒', text: 'HIPAA Compliant' },
-                { icon: '⚡', text: '5-day setup' },
-                { icon: '📞', text: 'Free strategy call' },
-                { icon: '🚫', text: 'No contracts' },
+                { icon: '🔒', text: 'Encrypted & Secure' },
+                { icon: '⚡', text: 'Live in 7 days' },
+                { icon: '📞', text: 'Free 20-min audit' },
+                { icon: '🚫', text: 'No long-term contracts' },
               ].map((item, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '7px', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '8px', padding: '7px 14px', backdropFilter: 'blur(4px)' }}>
                   <span style={{ fontSize: '13px' }}>{item.icon}</span>
