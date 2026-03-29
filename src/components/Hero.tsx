@@ -515,6 +515,7 @@ export default function Hero() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [showDemo, setShowDemo] = useState(false);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -664,6 +665,23 @@ export default function Hero() {
             <span key={i} style={{ fontSize: '12px', color: 'rgba(255,255,255,0.35)', fontWeight: 500 }}>{item}</span>
           ))}
         </div>
+
+        {/* Speed test trigger */}
+        <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+          <button
+            onClick={() => setShowDemo(true)}
+            style={{ background: 'transparent', border: 'none', color: 'rgba(255,255,255,0.4)', fontSize: '13px', cursor: 'pointer', fontWeight: 500, transition: 'color 0.2s' }}
+            onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.color = 'rgba(255,255,255,0.75)'; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = 'rgba(255,255,255,0.4)'; }}
+          >
+            → Watch Zeno respond to a missed call in real-time
+          </button>
+        </div>
+
+        {/* Speed test demo overlay */}
+        <AnimatePresence>
+          {showDemo && <SpeedTestDemo onClose={() => setShowDemo(false)} />}
+        </AnimatePresence>
 
         {/* 3D Phone mockup — scroll-driven zoom + parallax wrapper */}
         <div
