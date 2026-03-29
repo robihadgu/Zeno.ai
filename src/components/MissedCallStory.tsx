@@ -156,8 +156,8 @@ export default function MissedCallStory() {
 
         {/* ── section header ── */}
         <div style={{ textAlign: 'center', marginBottom: '64px' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '999px', padding: '5px 14px', marginBottom: '20px', backdropFilter: 'blur(10px)' }}>
-            <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'rgba(255,255,255,0.6)' }} />
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(37,99,235,0.3)', borderRadius: '999px', padding: '5px 14px', marginBottom: '20px', backdropFilter: 'blur(10px)', boxShadow: '0 0 12px rgba(37,99,235,0.25)' }}>
+            <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#2563EB' }} />
             <span style={{ fontSize: '12px', fontWeight: 600, color: 'rgba(255,255,255,0.6)' }}>The Real Cost</span>
           </div>
           <h2 style={{ fontSize: 'clamp(26px, 4vw, 44px)', fontWeight: 800, color: '#fff', letterSpacing: '-1.5px', lineHeight: 1.12, marginBottom: '16px' }}>
@@ -247,7 +247,7 @@ export default function MissedCallStory() {
                 onClick={openBooking}
                 style={{ background: '#fff', color: '#000', border: 'none', borderRadius: '10px', padding: '11px 26px', fontSize: '14px', fontWeight: 700, cursor: 'pointer', letterSpacing: '-0.3px' }}
               >
-                Fix This for My Business
+                Book a Free System Audit
               </button>
               <button
                 onClick={handleReplay}

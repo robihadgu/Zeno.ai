@@ -74,9 +74,9 @@ export default function LoadingScreen() {
   const [scramble, setScramble] = useState(false);
 
   useEffect(() => {
-    const t1 = setTimeout(() => setNameVisible(true), 900);
-    const t2 = setTimeout(() => setScramble(true), 1000);
-    const t3 = setTimeout(() => setVisible(false), 3600);
+    const t1 = setTimeout(() => setNameVisible(true), 400);
+    const t2 = setTimeout(() => setScramble(true), 500);
+    const t3 = setTimeout(() => setVisible(false), 1200);
     return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
   }, []);
 
@@ -87,7 +87,7 @@ export default function LoadingScreen() {
           key="loader"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           style={{
             position: 'fixed', inset: 0, zIndex: 999999,
             background: '#050505',
@@ -106,7 +106,7 @@ export default function LoadingScreen() {
           <motion.div
             initial={{ top: '-4px', opacity: 0.6 }}
             animate={{ top: '110%', opacity: 0 }}
-            transition={{ duration: 2.2, delay: 0.3, ease: 'linear' }}
+            transition={{ duration: 1.0, delay: 0.1, ease: 'linear' }}
             style={{
               position: 'absolute', left: 0, right: 0,
               height: '2px',
@@ -126,7 +126,7 @@ export default function LoadingScreen() {
             <motion.div
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 0.3, scale: 1.7 }}
-              transition={{ duration: 2.6, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
               style={{
                 position: 'absolute',
                 width: 'min(60vw, 60vh)',
@@ -143,8 +143,8 @@ export default function LoadingScreen() {
               initial={{ opacity: 0, rotate: 0, scale: 0.7 }}
               animate={{ opacity: 0.12, rotate: 360, scale: 1.22 }}
               transition={{
-                opacity: { duration: 1.4, ease: 'easeOut' },
-                scale: { duration: 2.6, ease: [0.22, 1, 0.36, 1] },
+                opacity: { duration: 0.6, ease: 'easeOut' },
+                scale: { duration: 1.1, ease: [0.22, 1, 0.36, 1] },
                 rotate: { duration: 14, ease: 'linear', repeat: Infinity },
               }}
               style={{
@@ -162,8 +162,8 @@ export default function LoadingScreen() {
               initial={{ opacity: 0, rotate: 0, scale: 0.6 }}
               animate={{ opacity: 0.07, rotate: -360, scale: 1.42 }}
               transition={{
-                opacity: { duration: 1.8, ease: 'easeOut' },
-                scale: { duration: 2.8, ease: [0.22, 1, 0.36, 1] },
+                opacity: { duration: 0.8, ease: 'easeOut' },
+                scale: { duration: 1.2, ease: [0.22, 1, 0.36, 1] },
                 rotate: { duration: 20, ease: 'linear', repeat: Infinity },
               }}
               style={{
@@ -183,7 +183,7 @@ export default function LoadingScreen() {
                 alt="Zeno"
                 initial={{ opacity: 0, scale: 0.7, filter: 'blur(20px)' }}
                 animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-                transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 style={{
                   width: 'min(36vw, 36vh)',
                   height: 'min(36vw, 36vh)',
@@ -202,7 +202,7 @@ export default function LoadingScreen() {
               <motion.p
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 style={{
                   marginTop: '32px',
                   fontSize: 'clamp(18px, 3vw, 26px)',
@@ -221,7 +221,7 @@ export default function LoadingScreen() {
           <motion.div
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
-            transition={{ duration: 2.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 1.1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             style={{
               position: 'absolute', bottom: 0, left: 0, right: 0,
               height: '1px',

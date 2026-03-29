@@ -30,8 +30,8 @@ export default function FinalCTA() {
           <div style={{ position: 'absolute', top: 0, left: '15%', right: '15%', height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent)' }} />
 
           <div style={{ position: 'relative', zIndex: 2 }}>
-            <div className="fade-up" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '999px', padding: '6px 16px', marginBottom: '28px', backdropFilter: 'blur(8px)' }}>
-              <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#fff', animation: 'pulse-ring 2s infinite' }} />
+            <div className="fade-up" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(37,99,235,0.3)', borderRadius: '999px', padding: '6px 16px', marginBottom: '28px', backdropFilter: 'blur(8px)', boxShadow: '0 0 12px rgba(37,99,235,0.25)' }}>
+              <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#2563EB', animation: 'pulse-ring 2s infinite' }} />
               <span style={{ fontSize: '12px', fontWeight: 500, color: 'rgba(255,255,255,0.55)' }}>Now taking new clients in Northern Virginia</span>
             </div>
 

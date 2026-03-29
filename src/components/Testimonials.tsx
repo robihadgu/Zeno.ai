@@ -5,22 +5,26 @@ const testimonials = [
   {
     quote: "We were missing roughly 8–10 calls a day and had no idea. Within the first week of Zeno's system going live, we recovered 4 bookings from missed calls alone. That's over $3,000 in revenue we would have just lost.",
     name: 'Dr. Lauren Park', role: 'Owner, Lumina Aesthetics', location: 'McLean, VA',
-    result: '+$3,200 recovered week 1', initials: 'LP',
+    result: '+$3,200 recovered in week 1',
+    avatar: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=80&h=80&fit=crop&crop=face',
   },
   {
     quote: "The AI chatbot answers questions better than some of my staff, honestly. It knows our full treatment menu, pricing, and contraindications. My front desk now focuses on customers in the building instead of the same 5 questions on repeat.",
     name: 'Melissa Tran', role: 'Practice Director, Glow Medical Spa', location: 'Tysons Corner, VA',
-    result: '60% fewer front desk calls', initials: 'MT',
+    result: '60% fewer front desk calls',
+    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&crop=face',
   },
   {
     quote: "We went from 43 Google reviews to 201 in under four months. I didn't change anything — Zeno just set up the automated text and it runs itself. Our local ranking jumped and new customer calls doubled.",
     name: 'James Okoye', role: 'Founder, NoVA Skin & Laser', location: 'Alexandria, VA',
-    result: '43 → 201 Google reviews', initials: 'JO',
+    result: '43 → 201 Google reviews in 4 months',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face',
   },
   {
     quote: "Setup took less than a week and I was skeptical it would actually work. First month we booked 11 appointments directly from the AI chatbot. It paid for itself three times over in 30 days.",
     name: 'Priya Nair', role: 'Owner, Revive Aesthetics', location: 'Reston, VA',
-    result: '11 bookings month one', initials: 'PN',
+    result: '11 new bookings in month one',
+    avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop&crop=face',
   },
 ];
 
@@ -48,17 +52,23 @@ function Card({ t }: { t: typeof testimonials[0] }) {
       </p>
 
       {/* Result badge */}
-      <div style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '8px', padding: '7px 12px', marginBottom: '22px', alignSelf: 'flex-start' }}>
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-        <span style={{ fontSize: '12px', fontWeight: 700, color: '#fff' }}>{t.result}</span>
+      <div style={{ display: 'inline-flex', alignItems: 'center', background: '#111', borderLeft: '2px solid #2563EB', borderRadius: '0 6px 6px 0', padding: '5px 10px', marginBottom: '16px', alignSelf: 'flex-start' }}>
+        <span style={{ fontSize: '12px', fontWeight: 600, color: '#fff' }}>{t.result}</span>
       </div>
 
       <div style={{ height: '1px', background: 'rgba(255,255,255,0.07)', marginBottom: '20px' }} />
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-        <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#fff', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <span style={{ color: '#000', fontSize: '12px', fontWeight: 700 }}>{t.initials}</span>
-        </div>
+        <img
+          src={t.avatar}
+          alt={t.name}
+          style={{
+            width: '48px', height: '48px', borderRadius: '50%',
+            objectFit: 'cover',
+            border: '1.5px solid #2563EB',
+            flexShrink: 0,
+          }}
+        />
         <div>
           <p style={{ fontSize: '13px', fontWeight: 700, color: '#fff', lineHeight: 1.3 }}>{t.name}</p>
           <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.35)', marginTop: '2px' }}>{t.role}</p>
@@ -79,15 +89,15 @@ export default function Testimonials() {
     <section style={{ background: '#080808', padding: '96px 0', overflow: 'hidden' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px', marginBottom: '52px' }}>
         <div style={{ textAlign: 'center' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '999px', padding: '5px 14px', marginBottom: '20px' }}>
-            <div style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'rgba(255,255,255,0.6)' }} />
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(37,99,235,0.3)', borderRadius: '999px', padding: '5px 14px', marginBottom: '20px', boxShadow: '0 0 12px rgba(37,99,235,0.25)' }}>
+            <div style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#2563EB' }} />
             <span style={{ fontSize: '12px', fontWeight: 600, color: 'rgba(255,255,255,0.6)' }}>Client Results</span>
           </div>
           <h2 style={{ fontSize: 'clamp(28px, 4vw, 46px)', fontWeight: 800, color: '#fff', letterSpacing: '-1.5px', lineHeight: 1.12 }}>
             Real practices. Real numbers.
           </h2>
           <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.3)', marginTop: '12px' }}>
-            Drag to explore →
+            Drag to explore client results →
           </p>
         </div>
       </div>

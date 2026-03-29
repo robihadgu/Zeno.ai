@@ -1,5 +1,5 @@
 import './index.css'
-import { Component, type ReactNode } from 'react'
+import { Component, useState, type ReactNode } from 'react'
 import LoadingScreen from './components/LoadingScreen'
 import ConfettiBurst from './components/ConfettiBurst'
 import SmoothScroll from './components/SmoothScroll'
@@ -11,12 +11,20 @@ import MagneticEffect from './components/MagneticEffect'
 import CursorSpotlight from './components/CursorSpotlight'
 import ClickRipple from './components/ClickRipple'
 import BookingModal from './components/BookingModal'
+import UrgencyStrip from './components/UrgencyStrip'
+import ExitIntent from './components/ExitIntent'
+import FloatingStats from './components/FloatingStats'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import IndustrySelector from './components/IndustrySelector'
 import TrustBar from './components/TrustBar'
+import LiveTicker from './components/LiveTicker'
 import Problem from './components/Problem'
 import MissedCallStory from './components/MissedCallStory'
+import ROICalculator from './components/ROICalculator'
+import BeforeAfter from './components/BeforeAfter'
 import Solution from './components/Solution'
+import HowItWorks from './components/HowItWorks'
 import WhyUs from './components/WhyUs'
 import Testimonials from './components/Testimonials'
 import Pricing from './components/Pricing'
@@ -36,12 +44,20 @@ class ErrorBoundary extends Component<{children:ReactNode},{error:string|null}> 
 }
 
 export default function App() {
+  const [stripVisible, setStripVisible] = useState(true);
+
   return (
     <ErrorBoundary>
       <LoadingScreen />
       <ConfettiBurst />
       {isDesktop && <SmoothScroll />}
-      <div style={{ background: '#050505', minHeight: '100vh', overflowX: 'hidden', cursor: isDesktop ? 'none' : 'auto' }}>
+
+      {/* Fixed overlays */}
+      {stripVisible && <UrgencyStrip onDismiss={() => setStripVisible(false)} />}
+      <ExitIntent />
+      {isDesktop && <FloatingStats />}
+
+      <div style={{ background: '#050505', minHeight: '100vh', overflowX: 'hidden', cursor: isDesktop ? 'none' : 'auto', paddingTop: stripVisible ? '36px' : '0' }}>
         {isDesktop && <ParticleField />}
         {isDesktop && <CustomCursor />}
         <ScrollProgress />
@@ -50,12 +66,17 @@ export default function App() {
         {isDesktop && <CursorSpotlight />}
         <ClickRipple />
         <BookingModal />
-        <Navbar />
+        <Navbar stripVisible={stripVisible} />
         <Hero />
+        <IndustrySelector />
         <TrustBar />
+        <LiveTicker />
         <Problem />
         <MissedCallStory />
+        <ROICalculator />
+        <BeforeAfter />
         <Solution />
+        <HowItWorks />
         <WhyUs />
         <Testimonials />
         <Pricing />

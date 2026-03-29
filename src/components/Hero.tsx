@@ -3,6 +3,164 @@ import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from
 import ScrambleText from './ScrambleText';
 import { openBooking } from './BookingModal';
 
+/* ─── Speed-test demo modal ─────────────────────────────────────────────────── */
+
+const SMS_TEXT = "Hi! This is Zeno from [Your Business]. Sorry we missed your call! How can I help you today? 😊";
+
+function SpeedTestDemo({ onClose }: { onClose: () => void }) {
+  const [phase, setPhase] = useState<0|1|2|3|4>(0);
+  const [typedChars, setTypedChars] = useState(0);
+  const [timer, setTimer] = useState(0);
+  const [timerDone, setTimerDone] = useState(false);
+
+  useEffect(() => {
+    const t1 = setTimeout(() => setPhase(1), 500);
+    const t2 = setTimeout(() => setPhase(2), 1500);
+    const t3 = setTimeout(() => setPhase(3), 2000);
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
+  }, []);
+
+  // Typing animation
+  useEffect(() => {
+    if (phase < 3) return;
+    let i = 0;
+    const id = setInterval(() => {
+      i++;
+      setTypedChars(i);
+      if (i >= SMS_TEXT.length) { clearInterval(id); setPhase(4); }
+    }, 38);
+    return () => clearInterval(id);
+  }, [phase]);
+
+  // Counter 0→4.2
+  useEffect(() => {
+    if (phase < 2) return;
+    let val = 0;
+    const id = setInterval(() => {
+      val += 0.1;
+      if (val >= 4.2) { val = 4.2; clearInterval(id); setTimerDone(true); }
+      setTimer(parseFloat(val.toFixed(1)));
+    }, 100);
+    return () => clearInterval(id);
+  }, [phase]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.22 }}
+      onClick={onClose}
+      style={{
+        position: 'fixed', inset: 0, zIndex: 9998,
+        background: 'rgba(0,0,0,0.78)',
+        backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        padding: '20px',
+      }}
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95 }}
+        transition={{ type: 'spring', damping: 26, stiffness: 300 }}
+        onClick={e => e.stopPropagation()}
+        style={{
+          width: '100%', maxWidth: '440px',
+          background: '#0d0d0d',
+          border: '1px solid rgba(255,255,255,0.1)',
+          borderRadius: '20px',
+          padding: '32px',
+          position: 'relative',
+          boxShadow: '0 40px 100px rgba(0,0,0,0.9)',
+        }}
+      >
+        {/* Top accent */}
+        <div style={{ position: 'absolute', top: 0, left: '15%', right: '15%', height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)' }} />
+
+        {/* Close */}
+        <button
+          onClick={onClose}
+          style={{ position: 'absolute', top: '14px', right: '14px', width: '28px', height: '28px', borderRadius: '7px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.4)', cursor: 'pointer', transition: 'all 0.18s' }}
+          onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(255,255,255,0.12)'; (e.currentTarget as HTMLButtonElement).style.color = '#fff'; }}
+          onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(255,255,255,0.06)'; (e.currentTarget as HTMLButtonElement).style.color = 'rgba(255,255,255,0.4)'; }}
+        >
+          <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+
+        {/* Timer badge */}
+        <div style={{ position: 'absolute', top: '14px', left: '14px', background: timerDone ? 'rgba(34,197,94,0.12)' : 'rgba(255,255,255,0.06)', border: `1px solid ${timerDone ? 'rgba(34,197,94,0.3)' : 'rgba(255,255,255,0.1)'}`, borderRadius: '8px', padding: '4px 10px', transition: 'all 0.3s' }}>
+          <span style={{ fontSize: '12px', fontWeight: 700, color: timerDone ? 'rgb(34,197,94)' : 'rgba(255,255,255,0.5)' }}>
+            {timerDone ? '✓ ' : ''}{timer.toFixed(1)}s
+          </span>
+        </div>
+
+        <div style={{ marginTop: '12px' }}>
+          <h3 style={{ fontSize: '16px', fontWeight: 800, color: '#fff', letterSpacing: '-0.3px', marginBottom: '20px', textAlign: 'center' }}>
+            Live Demo
+          </h3>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            {/* Step 1 */}
+            <motion.div
+              initial={{ opacity: 0, x: -12 }} animate={{ opacity: phase >= 0 ? 1 : 0, x: phase >= 0 ? 0 : -12 }}
+              transition={{ duration: 0.3 }}
+              style={{ display: 'flex', alignItems: 'center', gap: '10px', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '10px', padding: '10px 14px' }}
+            >
+              <span style={{ fontSize: '16px' }}>📞</span>
+              <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.7)', fontWeight: 500 }}>Incoming call... missed</span>
+            </motion.div>
+
+            {/* Step 2 */}
+            <motion.div
+              initial={{ opacity: 0, x: -12 }} animate={{ opacity: phase >= 1 ? 1 : 0, x: phase >= 1 ? 0 : -12 }}
+              transition={{ duration: 0.3 }}
+              style={{ display: 'flex', alignItems: 'center', gap: '10px', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '10px', padding: '10px 14px' }}
+            >
+              <span style={{ fontSize: '16px' }}>⚡</span>
+              <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.7)', fontWeight: 500 }}>Zeno triggered</span>
+            </motion.div>
+
+            {/* SMS bubble */}
+            <motion.div
+              initial={{ opacity: 0, y: 8 }} animate={{ opacity: phase >= 3 ? 1 : 0, y: phase >= 3 ? 0 : 8 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div style={{ background: 'rgba(34,197,94,0.08)', border: '1px solid rgba(34,197,94,0.2)', borderRadius: '14px 14px 4px 14px', padding: '12px 16px' }}>
+                <p style={{ fontSize: '11px', fontWeight: 600, color: 'rgba(34,197,94,0.7)', marginBottom: '5px', letterSpacing: '0.5px', textTransform: 'uppercase' }}>SMS sent</p>
+                <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.8)', lineHeight: 1.6, margin: 0 }}>
+                  {SMS_TEXT.slice(0, typedChars)}
+                  {typedChars < SMS_TEXT.length && (
+                    <span style={{ borderRight: '2px solid rgba(255,255,255,0.7)', marginLeft: '1px', animation: 'cursorBlink 0.8s step-end infinite' }} />
+                  )}
+                </p>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Final message */}
+          <motion.div
+            initial={{ opacity: 0, y: 8 }} animate={{ opacity: phase >= 4 ? 1 : 0, y: phase >= 4 ? 0 : 8 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            style={{ textAlign: 'center', marginTop: '20px', padding: '14px', background: 'rgba(34,197,94,0.06)', border: '1px solid rgba(34,197,94,0.18)', borderRadius: '12px' }}
+          >
+            <p style={{ fontSize: '14px', fontWeight: 700, color: '#fff', margin: 0 }}>
+              4.2 seconds. Before they called your competitor.
+            </p>
+          </motion.div>
+        </div>
+
+        <style>{`
+          @keyframes cursorBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+          }
+        `}</style>
+      </motion.div>
+    </motion.div>
+  );
+}
+
 /* ─── Chat animation ────────────────────────────────────────────────────────── */
 
 type Msg = { id: number; from: 'bot' | 'user' | 'event'; text: string };
@@ -479,7 +637,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '84px' }}
+          style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '0' }}
         >
           <button onClick={openBooking} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: '#fff', color: '#000', fontWeight: 700, fontSize: '14px', padding: '14px 28px', borderRadius: '12px', border: 'none', boxShadow: '0 4px 24px rgba(255,255,255,0.18)', transition: 'all 0.2s' }}
             onMouseEnter={e => { const el = e.currentTarget; el.style.transform = 'translateY(-2px)'; el.style.boxShadow = '0 8px 36px rgba(255,255,255,0.28)'; }}
@@ -495,6 +653,17 @@ export default function Hero() {
             See How It Works
           </a>
         </motion.div>
+
+        {/* Trust signals */}
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: '16px',
+          flexWrap: 'wrap', justifyContent: 'center',
+          marginTop: '20px', marginBottom: '64px',
+        }}>
+          {['🔒 No long-term contracts', '⚡ Live in 7 days', '✓ 14-day free trial included'].map((item, i) => (
+            <span key={i} style={{ fontSize: '12px', color: 'rgba(255,255,255,0.35)', fontWeight: 500 }}>{item}</span>
+          ))}
+        </div>
 
         {/* 3D Phone mockup — scroll-driven zoom + parallax wrapper */}
         <div
