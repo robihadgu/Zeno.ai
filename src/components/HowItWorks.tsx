@@ -104,9 +104,10 @@ function TimelineStep({ step, index, visible }: { step: typeof steps[0]; index: 
         animate={visible ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: index * 0.06 }}
         style={{
+          gridColumn: '1',
           paddingRight: '32px',
           paddingBottom: '40px',
-          display: isLeft ? 'block' : 'none',
+          visibility: isLeft ? 'visible' : 'hidden',
         }}
       >
         {isLeft && (
@@ -115,7 +116,7 @@ function TimelineStep({ step, index, visible }: { step: typeof steps[0]; index: 
       </motion.div>
 
       {/* Center node */}
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div style={{ gridColumn: '2', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
           animate={visible ? { scale: 1, opacity: 1 } : {}}
@@ -159,9 +160,10 @@ function TimelineStep({ step, index, visible }: { step: typeof steps[0]; index: 
         animate={visible ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: index * 0.06 }}
         style={{
+          gridColumn: '3',
           paddingLeft: '32px',
           paddingBottom: '40px',
-          display: !isLeft ? 'block' : 'none',
+          visibility: !isLeft ? 'visible' : 'hidden',
         }}
       >
         {!isLeft && (
