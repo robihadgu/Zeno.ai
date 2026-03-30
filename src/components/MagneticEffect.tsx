@@ -5,7 +5,7 @@ export default function MagneticEffect() {
     const cleanups: (() => void)[] = [];
 
     const apply = () => {
-      document.querySelectorAll('a[href="#cta"]').forEach(el => {
+      document.querySelectorAll('a[href="#cta"], button[data-magnetic]').forEach(el => {
         const element = el as HTMLElement;
         if (element.dataset.magnetic) return;
         element.dataset.magnetic = 'true';

@@ -21,10 +21,11 @@ export default function Navbar({ stripVisible = false }: { stripVisible?: boolea
     <nav style={{
       position: 'fixed', top: stripVisible ? '36px' : 0, left: 0, right: 0, zIndex: 100,
       transition: 'all 0.3s ease',
-      background: scrolled ? 'rgba(5,5,5,0.88)' : 'transparent',
-      backdropFilter: scrolled ? 'blur(24px) saturate(1.4)' : 'none',
-      WebkitBackdropFilter: scrolled ? 'blur(24px) saturate(1.4)' : 'none',
-      borderBottom: scrolled ? '1px solid rgba(255,255,255,0.06)' : '1px solid transparent',
+      background: scrolled ? 'rgba(5,5,5,0.75)' : 'transparent',
+      backdropFilter: scrolled ? 'blur(40px) saturate(1.8) brightness(0.9)' : 'none',
+      WebkitBackdropFilter: scrolled ? 'blur(40px) saturate(1.8) brightness(0.9)' : 'none',
+      borderBottom: scrolled ? '1px solid rgba(255,255,255,0.08)' : '1px solid transparent',
+      boxShadow: scrolled ? '0 1px 40px rgba(0,0,0,0.5)' : 'none',
     }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '68px' }}>
@@ -58,16 +59,16 @@ export default function Navbar({ stripVisible = false }: { stripVisible?: boolea
 
           {/* CTA */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <button onClick={openBooking} style={{
+            <button onClick={openBooking} data-magnetic="true" style={{
               display: 'inline-flex', alignItems: 'center', gap: '6px',
               background: '#fff', color: '#000',
               fontWeight: 700, fontSize: '13px', letterSpacing: '-0.1px',
               padding: '9px 18px', borderRadius: '8px', border: 'none',
               boxShadow: '0 2px 12px rgba(255,255,255,0.12)',
-              transition: 'all 0.2s',
+              transition: 'all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)',
             }}
-              onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-1px)'; (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 4px 20px rgba(255,255,255,0.2)'; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(0)'; (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 2px 12px rgba(255,255,255,0.12)'; }}
+              onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-2px) scale(1.02)'; (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 8px 32px rgba(255,255,255,0.25)'; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(0) scale(1)'; (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 2px 12px rgba(255,255,255,0.12)'; }}
             >
               Book a Free Audit
             </button>

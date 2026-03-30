@@ -72,7 +72,7 @@ export default function Problem() {
 
   return (
     <section ref={ref as React.RefObject<HTMLDivElement>} style={{ background: '#050505', padding: '96px 0', position: 'relative' }}>
-      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent)' }} />
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(90deg, transparent, rgba(37,99,235,0.4), transparent)' }} />
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
         <div className="fade-up" style={{ textAlign: 'center', marginBottom: '64px' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(37,99,235,0.3)', borderRadius: '999px', padding: '5px 14px', marginBottom: '20px', backdropFilter: 'blur(10px)', boxShadow: '0 0 12px rgba(37,99,235,0.25)' }}>

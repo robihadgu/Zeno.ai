@@ -44,14 +44,14 @@ export default function FinalCTA() {
             </p>
 
             <div className="fade-up" style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '44px' }}>
-              <button onClick={openBooking} style={{
+              <button onClick={openBooking} data-magnetic="true" style={{
                 display: 'inline-flex', alignItems: 'center', gap: '8px',
                 background: '#fff', color: '#000', fontWeight: 700, fontSize: '15px',
                 padding: '16px 34px', borderRadius: '11px', border: 'none',
                 boxShadow: '0 4px 20px rgba(255,255,255,0.15)',
-                transition: 'all 0.25s',
+                transition: 'all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)',
               }}
-                onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-3px) scale(1.01)'; (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 10px 36px rgba(255,255,255,0.25)'; }}
+                onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-2px) scale(1.02)'; (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 8px 32px rgba(255,255,255,0.25)'; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(0) scale(1)'; (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 4px 20px rgba(255,255,255,0.15)'; }}
               >
                 Book a Free System Audit

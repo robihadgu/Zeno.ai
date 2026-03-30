@@ -106,14 +106,26 @@ export default function WhyUs() {
         }}>
           {tiles.map((d, i) => (
             <div key={i} className="fade-up" style={{
-              background: '#0A0A0A', padding: '32px',
+              background: 'rgba(255,255,255,0.025)', padding: '32px',
               borderRight: (i % 3 !== 2) ? '1px solid rgba(255,255,255,0.05)' : 'none',
               borderBottom: (i < 3) ? '1px solid rgba(255,255,255,0.05)' : 'none',
               position: 'relative', overflow: 'hidden',
-              transition: 'background 0.2s',
+              transition: 'all 0.25s ease',
             }}
-              onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.background = '#141414'; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.background = '#0A0A0A'; }}
+              onMouseEnter={e => {
+                const el = e.currentTarget as HTMLDivElement;
+                el.style.background = 'rgba(255,255,255,0.06)';
+                el.style.borderColor = 'rgba(37,99,235,0.3)';
+                el.style.transform = 'translateY(-4px)';
+                el.style.boxShadow = '0 12px 40px rgba(0,0,0,0.4)';
+              }}
+              onMouseLeave={e => {
+                const el = e.currentTarget as HTMLDivElement;
+                el.style.background = 'rgba(255,255,255,0.025)';
+                el.style.borderColor = '';
+                el.style.transform = 'translateY(0)';
+                el.style.boxShadow = '';
+              }}
             >
               {/* top highlight */}
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)' }} />

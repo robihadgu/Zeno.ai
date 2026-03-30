@@ -640,9 +640,9 @@ export default function Hero() {
           transition={{ delay: 0.3, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '0' }}
         >
-          <button onClick={openBooking} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: '#fff', color: '#000', fontWeight: 700, fontSize: '14px', padding: '14px 28px', borderRadius: '12px', border: 'none', boxShadow: '0 4px 24px rgba(255,255,255,0.18)', transition: 'all 0.2s' }}
-            onMouseEnter={e => { const el = e.currentTarget; el.style.transform = 'translateY(-2px)'; el.style.boxShadow = '0 8px 36px rgba(255,255,255,0.28)'; }}
-            onMouseLeave={e => { const el = e.currentTarget; el.style.transform = 'translateY(0)'; el.style.boxShadow = '0 4px 24px rgba(255,255,255,0.18)'; }}
+          <button onClick={openBooking} data-magnetic="true" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: '#fff', color: '#000', fontWeight: 700, fontSize: '14px', padding: '14px 28px', borderRadius: '12px', border: 'none', boxShadow: '0 4px 24px rgba(255,255,255,0.18)', transition: 'all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+            onMouseEnter={e => { const el = e.currentTarget; el.style.transform = 'translateY(-2px) scale(1.02)'; el.style.boxShadow = '0 8px 32px rgba(255,255,255,0.25)'; }}
+            onMouseLeave={e => { const el = e.currentTarget; el.style.transform = 'translateY(0) scale(1)'; el.style.boxShadow = '0 4px 24px rgba(255,255,255,0.18)'; }}
           >
             Book a Free System Audit
             <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -682,6 +682,23 @@ export default function Hero() {
         <AnimatePresence>
           {showDemo && <SpeedTestDemo onClose={() => setShowDemo(false)} />}
         </AnimatePresence>
+
+        {/* Stat row */}
+        <div style={{
+          display: 'flex', gap: '32px', justifyContent: 'center', flexWrap: 'wrap',
+          marginBottom: '48px',
+        }}>
+          {[
+            { value: '$2.8M+', label: 'recovered for clients' },
+            { value: '4.2s',   label: 'avg response time' },
+            { value: '24/7',   label: 'always on' },
+          ].map((s, i) => (
+            <div key={i} style={{ textAlign: 'center' }}>
+              <p style={{ fontSize: 'clamp(22px, 3vw, 28px)', fontWeight: 900, color: '#fff', letterSpacing: '-1px', margin: 0 }}>{s.value}</p>
+              <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)', fontWeight: 500, margin: '3px 0 0', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{s.label}</p>
+            </div>
+          ))}
+        </div>
 
         {/* 3D Phone mockup — scroll-driven zoom + parallax wrapper */}
         <div

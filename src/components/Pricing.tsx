@@ -102,9 +102,9 @@ interface PlanDef {
 function PricingCard({ plan, isElite, billing }: { plan: PlanDef; isElite?: boolean; billing: Billing }) {
   return (
     <div
-      style={{ borderRadius: '28px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.08)', flex: 1, minWidth: 0, position: 'relative', transition: 'transform 0.25s, border-color 0.25s' }}
-      onMouseEnter={e => { const el = e.currentTarget as HTMLDivElement; el.style.transform = 'scale(1.012)'; el.style.borderColor = 'rgba(255,255,255,0.2)'; }}
-      onMouseLeave={e => { const el = e.currentTarget as HTMLDivElement; el.style.transform = 'scale(1)'; el.style.borderColor = 'rgba(255,255,255,0.08)'; }}
+      style={{ borderRadius: '28px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.08)', flex: 1, minWidth: 0, position: 'relative', transition: 'transform 0.25s, border-color 0.25s, box-shadow 0.3s ease', boxShadow: isElite ? '0 0 0 1px rgba(37,99,235,0.3), 0 24px 80px rgba(37,99,235,0.1)' : '0 0 0 1px rgba(255,255,255,0.08), 0 24px 60px rgba(0,0,0,0.4)' }}
+      onMouseEnter={e => { const el = e.currentTarget as HTMLDivElement; el.style.transform = 'scale(1.012)'; el.style.borderColor = 'rgba(255,255,255,0.2)'; el.style.boxShadow = isElite ? '0 0 0 1px rgba(37,99,235,0.5), 0 32px 100px rgba(37,99,235,0.2)' : '0 0 0 1px rgba(255,255,255,0.18), 0 32px 80px rgba(0,0,0,0.6)'; }}
+      onMouseLeave={e => { const el = e.currentTarget as HTMLDivElement; el.style.transform = 'scale(1)'; el.style.borderColor = 'rgba(255,255,255,0.08)'; el.style.boxShadow = isElite ? '0 0 0 1px rgba(37,99,235,0.3), 0 24px 80px rgba(37,99,235,0.1)' : '0 0 0 1px rgba(255,255,255,0.08), 0 24px 60px rgba(0,0,0,0.4)'; }}
     >
       {/* Most Popular badge */}
       {isElite && (
@@ -353,10 +353,10 @@ export default function Pricing() {
           <p style={{ fontSize: '17px', color: 'rgba(255,255,255,0.42)', lineHeight: 1.8, maxWidth: '460px', margin: '0 auto 40px' }}>
             Book a free 20-minute system audit. We'll show you exactly where your business is losing leads and what Zeno can do about it.
           </p>
-          <button onClick={openBooking}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: '#fff', color: '#000', fontWeight: 700, fontSize: '16px', padding: '16px 36px', borderRadius: '16px', border: 'none', boxShadow: '0 4px 24px rgba(255,255,255,0.18)', transition: 'all 0.22s', marginBottom: '18px', fontFamily: 'inherit' }}
-            onMouseEnter={e => { const el = e.currentTarget as HTMLButtonElement; el.style.transform = 'translateY(-2px)'; el.style.boxShadow = '0 10px 36px rgba(255,255,255,0.28)'; }}
-            onMouseLeave={e => { const el = e.currentTarget as HTMLButtonElement; el.style.transform = 'translateY(0)'; el.style.boxShadow = '0 4px 24px rgba(255,255,255,0.18)'; }}
+          <button onClick={openBooking} data-magnetic="true"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: '#fff', color: '#000', fontWeight: 700, fontSize: '16px', padding: '16px 36px', borderRadius: '16px', border: 'none', boxShadow: '0 4px 24px rgba(255,255,255,0.18)', transition: 'all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)', marginBottom: '18px', fontFamily: 'inherit' }}
+            onMouseEnter={e => { const el = e.currentTarget as HTMLButtonElement; el.style.transform = 'translateY(-2px) scale(1.02)'; el.style.boxShadow = '0 8px 32px rgba(255,255,255,0.25)'; }}
+            onMouseLeave={e => { const el = e.currentTarget as HTMLButtonElement; el.style.transform = 'translateY(0) scale(1)'; el.style.boxShadow = '0 4px 24px rgba(255,255,255,0.18)'; }}
           >
             Book a Free System Audit
             <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path d="M5 12h14M12 5l7 7-7 7"/></svg>

@@ -41,6 +41,29 @@
         background: #2563EB;
         z-index: 9999;
       }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar { width: 4px; }
+      ::-webkit-scrollbar-track { background: #050505; }
+      ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+      ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
+      * { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.15) #050505; }
+
+      /* Remove default focus outline, add premium one */
+      :focus-visible {
+        outline: 2px solid rgba(37,99,235,0.6);
+        outline-offset: 3px;
+        border-radius: 4px;
+      }
+      button:focus:not(:focus-visible),
+      a:focus:not(:focus-visible) {
+        outline: none;
+      }
+
+      ::selection {
+        background: rgba(37,99,235,0.35);
+        color: #fff;
+      }
     </style>
   </head>
   <body>

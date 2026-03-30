@@ -128,7 +128,7 @@ export default function BeforeAfter() {
 
   return (
     <section style={{ background: '#050505', padding: '96px 0', position: 'relative' }}>
-      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent)' }} />
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(90deg, transparent, rgba(37,99,235,0.4), transparent)' }} />
 
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
 

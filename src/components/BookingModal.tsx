@@ -7,7 +7,7 @@ declare global {
   }
 }
 
-const CALENDLY_LINK = 'https://calendly.com/zenoautomation/demo';
+const CALENDLY_LINK = 'https://calendly.com/zenoscale/30min';
 
 /* Call this from any button — fires confetti then opens the Calendly popup */
 export const openBooking = () => {
@@ -87,12 +87,20 @@ export default function BookingModal() {
     if (open) setTimeout(() => firstRef.current?.focus(), 320);
   }, [open]);
 
-  // Lock body scroll + ESC to close
+  // Lock body scroll + ESC to close + B to open
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
-    const esc = (e: KeyboardEvent) => { if (e.key === 'Escape') close(); };
-    window.addEventListener('keydown', esc);
-    return () => { document.body.style.overflow = ''; window.removeEventListener('keydown', esc); };
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') close();
+      if (e.key === 'b' || e.key === 'B') {
+        // only fire if not typing in an input/textarea
+        if (document.activeElement?.tagName !== 'INPUT' && document.activeElement?.tagName !== 'TEXTAREA') {
+          openBooking();
+        }
+      }
+    };
+    window.addEventListener('keydown', handler);
+    return () => { document.body.style.overflow = ''; window.removeEventListener('keydown', handler); };
   }, [open]);
 
   const submit = async (e: React.FormEvent) => {
