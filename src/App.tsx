@@ -10,6 +10,7 @@ import GrainOverlay from './components/GrainOverlay'
 import MagneticEffect from './components/MagneticEffect'
 import CursorSpotlight from './components/CursorSpotlight'
 import ClickRipple from './components/ClickRipple'
+import AuroraBackground from './components/AuroraBackground'
 import BookingModal from './components/BookingModal'
 import UrgencyStrip from './components/UrgencyStrip'
 import ExitIntent from './components/ExitIntent'
@@ -58,6 +59,7 @@ export default function App() {
       {isDesktop && <FloatingStats />}
 
       <div style={{ background: '#050505', minHeight: '100vh', overflowX: 'hidden', cursor: isDesktop ? 'none' : 'auto', paddingTop: stripVisible ? '36px' : '0' }}>
+        <AuroraBackground />
         {isDesktop && <ParticleField />}
         {isDesktop && <CustomCursor />}
         <ScrollProgress />
