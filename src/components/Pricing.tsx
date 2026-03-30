@@ -113,6 +113,18 @@ function PricingCard({ plan, isElite, billing }: { plan: PlanDef; isElite?: bool
         </div>
       )}
 
+      {/* UPGRADE 10 — Top glow beam */}
+      <div style={{
+        position: 'absolute',
+        top: 0, left: '20%', right: '20%',
+        height: '1px',
+        background: isElite
+          ? 'linear-gradient(90deg, transparent, #2563EB, transparent)'
+          : 'linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)',
+        boxShadow: isElite ? '0 0 20px 2px rgba(37,99,235,0.5)' : '0 0 20px 2px rgba(255,255,255,0.15)',
+        zIndex: 5,
+      }} />
+
       {/* ── TOP HALF (dark) ── */}
       <div style={{ background: '#111111', padding: '36px 36px 32px' }}>
         {/* Badge pill */}
@@ -211,7 +223,7 @@ export default function Pricing() {
   };
 
   return (
-    <section id="pricing" style={{ background: '#050505' }}>
+    <section id="pricing" style={{ background: '#070710' }}>
 
       {/* ── SECTION 1 — HERO ── */}
       <div style={{ paddingTop: '128px', paddingBottom: '52px', textAlign: 'center' }}>

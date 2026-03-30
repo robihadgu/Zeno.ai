@@ -29,15 +29,17 @@ function Card({ p }: { p: typeof pains[0] }) {
     <div
       ref={ref}
       onMouseMove={onMouseMove}
-      onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(255,255,255,0.15)'; (e.currentTarget as HTMLDivElement).style.boxShadow = '0 8px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06)'; }}
-      onMouseLeave={e => { onMouseLeave(); (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(255,255,255,0.08)'; (e.currentTarget as HTMLDivElement).style.boxShadow = '0 4px 30px rgba(0,0,0,0.4)'; }}
-      className="tilt-card"
+      onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.background = 'rgba(255,255,255,0.06)'; (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(37,99,235,0.25)'; (e.currentTarget as HTMLDivElement).style.boxShadow = '0 12px 48px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.12)'; }}
+      onMouseLeave={e => { onMouseLeave(); (e.currentTarget as HTMLDivElement).style.background = 'rgba(255,255,255,0.03)'; (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(255,255,255,0.08)'; (e.currentTarget as HTMLDivElement).style.boxShadow = '0 4px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.07)'; }}
+      className="tilt-card glass-card"
       style={{
         background: 'rgba(255,255,255,0.03)',
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
         border: '1px solid rgba(255,255,255,0.08)',
         borderRadius: '20px', padding: '36px', position: 'relative', overflow: 'hidden',
-        boxShadow: '0 4px 30px rgba(0,0,0,0.4)',
-        cursor: 'default', transition: 'border-color 0.3s, box-shadow 0.3s',
+        boxShadow: '0 4px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.07)',
+        cursor: 'default', transition: 'background 0.3s, border-color 0.3s, box-shadow 0.3s',
       }}
     >
       <div className="card-shine" style={{ position: 'absolute', inset: 0, borderRadius: 'inherit', zIndex: 1, background: 'linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 60%)' }} />
@@ -49,7 +51,14 @@ function Card({ p }: { p: typeof pains[0] }) {
       </div>
 
       <div style={{ marginBottom: '16px', position: 'relative', zIndex: 2 }}>
-        <CountUp value={p.stat} style={{ fontSize: '52px', fontWeight: 900, color: '#fff', letterSpacing: '-2.5px', lineHeight: 1 }} />
+        <CountUp value={p.stat} style={{
+          fontSize: '52px', fontWeight: 900, letterSpacing: '-2.5px', lineHeight: 1,
+          background: 'linear-gradient(135deg, #fff 30%, rgba(37,99,235,0.8) 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
+          display: 'inline-block',
+        }} />
         <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.35)', fontWeight: 500, marginTop: '4px' }}>{p.statSub}</p>
       </div>
       <h3 style={{ fontSize: '17px', fontWeight: 700, color: '#fff', marginBottom: '10px', position: 'relative', zIndex: 2 }}>{p.title}</h3>
@@ -79,7 +88,7 @@ export default function Problem() {
             <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#2563EB' }} />
             <span style={{ fontSize: '12px', fontWeight: 600, color: 'rgba(255,255,255,0.6)' }}>The Problem</span>
           </div>
-          <h2 style={{ fontSize: 'clamp(28px, 4vw, 46px)', fontWeight: 800, color: '#fff', letterSpacing: '-1.5px', lineHeight: 1.12, marginBottom: '16px' }}>
+          <h2 style={{ fontSize: 'clamp(28px, 4vw, 46px)', fontWeight: 800, color: '#fff', letterSpacing: '-2px', lineHeight: 1.12, marginBottom: '16px' }}>
             Your front desk is overwhelmed.<br />
             <span style={{ color: 'rgba(255,255,255,0.3)', fontWeight: 400 }}>Revenue is slipping through the cracks.</span>
           </h2>

@@ -1,6 +1,11 @@
 export default function Footer() {
   return (
-    <footer style={{ background: '#050505', padding: '56px 0 32px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+    <footer className="dot-grid" style={{ background: 'linear-gradient(to bottom, #060610, #050505)', padding: '56px 0 32px', borderTop: '1px solid rgba(255,255,255,0.05)', position: 'relative' }}>
+      {/* UPGRADE 11 — Top gradient beam */}
+      <div style={{
+        position: 'absolute', top: 0, left: '10%', right: '10%', height: '1px',
+        background: 'linear-gradient(90deg, transparent, rgba(37,99,235,0.5), transparent)',
+      }} />
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '32px', justifyContent: 'space-between', alignItems: 'flex-start', paddingBottom: '40px', borderBottom: '1px solid rgba(255,255,255,0.05)', marginBottom: '28px' }}>
 

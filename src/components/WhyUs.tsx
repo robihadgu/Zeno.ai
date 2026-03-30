@@ -72,7 +72,7 @@ export default function WhyUs() {
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(37,99,235,0.3)', borderRadius: '999px', padding: '5px 14px', marginBottom: '20px', boxShadow: '0 0 12px rgba(37,99,235,0.25)' }}>
               <span style={{ fontSize: '12px', fontWeight: 600, color: 'rgba(255,255,255,0.6)' }}>Why Zeno</span>
             </div>
-            <h2 style={{ fontSize: 'clamp(28px, 4vw, 46px)', fontWeight: 800, color: '#fff', letterSpacing: '-1.5px', lineHeight: 1.12 }}>
+            <h2 style={{ fontSize: 'clamp(28px, 4vw, 46px)', fontWeight: 800, color: '#fff', letterSpacing: '-2px', lineHeight: 1.12 }}>
               We are not a marketing agency.<br />
               <span style={{ color: 'rgba(255,255,255,0.35)', fontWeight: 400 }}>We are your 24/7 operations partner.</span>
             </h2>
@@ -129,7 +129,17 @@ export default function WhyUs() {
             >
               {/* top highlight */}
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)' }} />
-              <div style={{ width: '36px', height: '36px', marginBottom: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{tileIcons[i]}</div>
+              <div style={{
+                background: 'rgba(37,99,235,0.1)',
+                border: '1px solid rgba(37,99,235,0.25)',
+                borderRadius: '12px',
+                padding: '10px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: '0 0 16px rgba(37,99,235,0.15)',
+                marginBottom: '14px',
+              }}>{tileIcons[i]}</div>
               <h4 style={{ fontSize: '15px', fontWeight: 700, color: '#fff', marginBottom: '8px' }}>{d.title}</h4>
               <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.35)', lineHeight: 1.75 }}>{d.body}</p>
             </div>

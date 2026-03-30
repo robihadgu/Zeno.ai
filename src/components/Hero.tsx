@@ -593,20 +593,39 @@ export default function Hero() {
         paddingTop: '112px', paddingBottom: '100px', minHeight: '100vh',
       }}
     >
+      {/* UPGRADE 2 — Background radial glow */}
+      <div style={{
+        position: 'absolute',
+        top: '-20%',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: '900px',
+        height: '600px',
+        background: 'radial-gradient(ellipse at center, rgba(37,99,235,0.08) 0%, transparent 70%)',
+        pointerEvents: 'none',
+        zIndex: 0,
+      }} />
       {/* Ambient top glow */}
-      <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: '900px', height: '500px', pointerEvents: 'none', background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,255,255,0.04) 0%, transparent 70%)' }} />
+      <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: '900px', height: '500px', pointerEvents: 'none', background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,255,255,0.04) 0%, transparent 70%)', zIndex: 0 }} />
       {/* Bottom fade */}
       <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '120px', background: 'linear-gradient(to bottom, transparent, #050505)', pointerEvents: 'none', zIndex: 1 }} />
 
       <div style={{ maxWidth: '940px', margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 2, textAlign: 'center' }}>
 
-        {/* Badge */}
+        {/* Badge — UPGRADE 1: gradient border badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '999px', padding: '7px 18px', marginBottom: '36px', backdropFilter: 'blur(10px)' }}
+          style={{
+            display: 'inline-flex', alignItems: 'center', gap: '8px',
+            background: 'linear-gradient(135deg, rgba(37,99,235,0.15) 0%, rgba(255,255,255,0.05) 100%)',
+            border: '1px solid rgba(37,99,235,0.4)',
+            borderRadius: '999px', padding: '6px 16px', marginBottom: '36px',
+            backdropFilter: 'blur(12px)',
+            boxShadow: '0 0 20px rgba(37,99,235,0.2), inset 0 1px 0 rgba(255,255,255,0.1)',
+          }}
         >
-          <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#fff', animation: 'pulse-ring 2.5s infinite' }} />
+          <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#2563EB', boxShadow: '0 0 8px #2563EB', animation: 'pulse-ring 2.5s infinite' }} />
           <span style={{ fontSize: '12px', fontWeight: 500, color: 'rgba(255,255,255,0.65)', letterSpacing: '0.2px' }}>
             AI Automation for Local Businesses
           </span>
@@ -640,13 +659,21 @@ export default function Hero() {
           transition={{ delay: 0.3, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '0' }}
         >
-          <button onClick={openBooking} data-magnetic="true" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: '#fff', color: '#000', fontWeight: 700, fontSize: '14px', padding: '14px 28px', borderRadius: '12px', border: 'none', boxShadow: '0 4px 24px rgba(255,255,255,0.18)', transition: 'all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
-            onMouseEnter={e => { const el = e.currentTarget; el.style.transform = 'translateY(-2px) scale(1.02)'; el.style.boxShadow = '0 8px 32px rgba(255,255,255,0.25)'; }}
-            onMouseLeave={e => { const el = e.currentTarget; el.style.transform = 'translateY(0) scale(1)'; el.style.boxShadow = '0 4px 24px rgba(255,255,255,0.18)'; }}
-          >
-            Book a Free System Audit
-            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </button>
+          {/* UPGRADE 3 — Animated gradient border on primary CTA */}
+          <div style={{
+            position: 'relative', display: 'inline-flex', borderRadius: '14px', padding: '1px',
+            background: 'linear-gradient(135deg, rgba(37,99,235,0.8), rgba(255,255,255,0.3), rgba(37,99,235,0.8))',
+            backgroundSize: '200% 200%',
+            animation: 'gradient-shift 3s ease infinite',
+          }}>
+            <button onClick={openBooking} data-magnetic="true" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: '#fff', color: '#000', fontWeight: 700, fontSize: '14px', padding: '14px 28px', borderRadius: '13px', border: 'none', boxShadow: '0 4px 24px rgba(255,255,255,0.18)', transition: 'all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+              onMouseEnter={e => { const el = e.currentTarget; el.style.transform = 'translateY(-2px) scale(1.02)'; el.style.boxShadow = '0 8px 32px rgba(255,255,255,0.25)'; }}
+              onMouseLeave={e => { const el = e.currentTarget; el.style.transform = 'translateY(0) scale(1)'; el.style.boxShadow = '0 4px 24px rgba(255,255,255,0.18)'; }}
+            >
+              Book a Free System Audit
+              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
           <a href="#solution" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', backdropFilter: 'blur(8px)', color: 'rgba(255,255,255,0.65)', fontWeight: 500, fontSize: '14px', padding: '14px 24px', borderRadius: '12px', textDecoration: 'none', transition: 'all 0.2s' }}
             onMouseEnter={e => { const el = e.currentTarget; el.style.color = '#fff'; el.style.borderColor = 'rgba(255,255,255,0.25)'; el.style.background = 'rgba(255,255,255,0.1)'; }}
             onMouseLeave={e => { const el = e.currentTarget; el.style.color = 'rgba(255,255,255,0.65)'; el.style.borderColor = 'rgba(255,255,255,0.12)'; el.style.background = 'rgba(255,255,255,0.06)'; }}

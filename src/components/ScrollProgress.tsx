@@ -25,10 +25,10 @@ export default function ScrollProgress() {
         ref={barRef}
         style={{
           height: '100%', width: '100%',
-          background: 'linear-gradient(90deg, rgba(255,255,255,0.2), #fff, rgba(255,255,255,0.2))',
+          background: 'linear-gradient(90deg, #1d4ed8, #2563EB, #3b82f6)',
           transformOrigin: 'left',
           transform: 'scaleX(0)',
-          boxShadow: '0 0 12px rgba(255,255,255,0.9), 0 0 4px rgba(255,255,255,1)',
+          boxShadow: '0 0 8px rgba(37,99,235,0.8)',
         }}
       />
     </div>

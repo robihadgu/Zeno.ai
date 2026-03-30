@@ -193,7 +193,7 @@ export default function Solution() {
   }, []);
 
   return (
-    <section ref={ref as React.RefObject<HTMLDivElement>} id="solution" style={{ background: '#050505', padding: '96px 0' }}>
+    <section ref={ref as React.RefObject<HTMLDivElement>} id="solution" style={{ background: '#070710', padding: '96px 0' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
 
         <div className="fade-up" style={{ textAlign: 'center', marginBottom: '80px' }}>
@@ -201,7 +201,7 @@ export default function Solution() {
             <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#2563EB' }} />
             <span style={{ fontSize: '12px', fontWeight: 600, color: 'rgba(255,255,255,0.6)' }}>The Solution</span>
           </div>
-          <h2 style={{ fontSize: 'clamp(28px, 4vw, 46px)', fontWeight: 800, color: '#fff', letterSpacing: '-1.5px', lineHeight: 1.12, marginBottom: '16px' }}>
+          <h2 style={{ fontSize: 'clamp(28px, 4vw, 46px)', fontWeight: 800, color: '#fff', letterSpacing: '-2px', lineHeight: 1.12, marginBottom: '16px' }}>
             An AI System That <span style={{ color: 'rgba(255,255,255,0.35)', fontWeight: 400 }}>Never Stops Working.</span>
           </h2>
           <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.4)', maxWidth: '480px', margin: '0 auto', lineHeight: 1.7 }}>
