@@ -211,65 +211,60 @@ function StepCard({ step, index }: { step: typeof steps[0]; index: number }) {
   );
 }
 
-// Mobile single-column step
+// Mobile single-column step — fully stacked, no side icon column
 function MobileStep({ step, index, visible }: { step: typeof steps[0]; index: number; visible: boolean }) {
   const isFinal = index === steps.length - 1;
   return (
-    <div style={{ display: 'flex', gap: '16px', paddingBottom: '24px' }}>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          animate={visible ? { scale: 1, opacity: 1 } : {}}
-          transition={{ type: 'spring', damping: 20, stiffness: 260, delay: index * 0.08 }}
-          style={{
-            width: '40px',
-            height: '40px',
-            borderRadius: '50%',
-            background: isFinal ? 'rgba(34,197,94,0.15)' : '#0d0d0d',
-            border: isFinal ? '2px solid rgba(34,197,94,0.5)' : '2px solid rgba(255,255,255,0.2)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: isFinal ? 'rgb(34,197,94)' : 'rgba(255,255,255,0.7)',
-            flexShrink: 0,
-          }}
-        >
-          {step.icon}
-        </motion.div>
-        {index < steps.length - 1 && (
-          <motion.div
-            initial={{ scaleY: 0 }}
-            animate={visible ? { scaleY: 1 } : {}}
-            transition={{ duration: 0.4, delay: index * 0.08 + 0.2, ease: 'easeOut' }}
-            style={{ width: '2px', flex: 1, minHeight: '24px', background: 'rgba(255,255,255,0.1)', transformOrigin: 'top' }}
-          />
-        )}
-      </div>
-      <motion.div
-        initial={{ opacity: 0, x: 20 }}
-        animate={visible ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1], delay: index * 0.08 }}
-        style={{ flex: 1, paddingTop: '4px', paddingBottom: '8px' }}
-      >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
-          <span style={{
-            fontSize: '10px',
-            fontWeight: 700,
-            color: isFinal ? 'rgb(34,197,94)' : 'rgba(255,255,255,0.4)',
-            letterSpacing: '0.8px',
-            textTransform: 'uppercase',
-            background: isFinal ? 'rgba(34,197,94,0.1)' : 'rgba(255,255,255,0.06)',
-            border: isFinal ? '1px solid rgba(34,197,94,0.2)' : '1px solid rgba(255,255,255,0.1)',
-            borderRadius: '999px',
-            padding: '3px 10px',
-          }}>
-            {step.day}
-          </span>
-        </div>
-        <h4 style={{ fontSize: '15px', fontWeight: 700, color: '#fff', marginBottom: '5px' }}>{step.title}</h4>
-        <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)', lineHeight: 1.65, margin: 0 }}>{step.desc}</p>
-      </motion.div>
-    </div>
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      animate={visible ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1], delay: index * 0.08 }}
+      style={{
+        padding: '20px 24px',
+        marginBottom: index < steps.length - 1 ? '12px' : '0',
+        background: isFinal ? 'rgba(34,197,94,0.05)' : 'rgba(255,255,255,0.03)',
+        border: isFinal ? '1px solid rgba(34,197,94,0.2)' : '1px solid rgba(255,255,255,0.07)',
+        borderRadius: '16px',
+      }}
+    >
+      {/* Day badge */}
+      <span style={{
+        display: 'inline-block',
+        fontSize: '10px',
+        fontWeight: 700,
+        color: isFinal ? 'rgb(34,197,94)' : 'rgba(255,255,255,0.4)',
+        letterSpacing: '0.8px',
+        textTransform: 'uppercase',
+        background: isFinal ? 'rgba(34,197,94,0.1)' : 'rgba(255,255,255,0.06)',
+        border: isFinal ? '1px solid rgba(34,197,94,0.2)' : '1px solid rgba(255,255,255,0.1)',
+        borderRadius: '999px',
+        padding: '3px 10px',
+        marginBottom: '10px',
+      }}>
+        {step.day}{step.sub ? ` · ${step.sub}` : ''}
+      </span>
+
+      {/* Title */}
+      <h4 style={{
+        fontSize: '16px',
+        fontWeight: 700,
+        color: isFinal ? '#fff' : 'rgba(255,255,255,0.9)',
+        margin: '0 0 6px',
+        letterSpacing: '-0.2px',
+      }}>
+        {step.title}
+      </h4>
+
+      {/* Description */}
+      <p style={{
+        fontSize: '14px',
+        color: 'rgba(255,255,255,0.4)',
+        lineHeight: 1.7,
+        margin: 0,
+      }}>
+        {step.desc}
+      </p>
+    </motion.div>
   );
 }
 
@@ -328,7 +323,7 @@ export default function HowItWorks() {
 
         {/* Timeline */}
         {isMobile ? (
-          <div style={{ maxWidth: '520px', margin: '0 auto' }}>
+          <div style={{ maxWidth: '600px', margin: '0 auto' }}>
             {steps.map((step, i) => (
               <MobileStep key={i} step={step} index={i} visible={visibleSteps[i]} />
             ))}
