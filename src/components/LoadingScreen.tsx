@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const BRAND = 'ZENO';
 
-function ScrambleName({ trigger }: { trigger: boolean }) {
+function ScrambleName({ trigger, onComplete }: { trigger: boolean; onComplete?: () => void }) {
   const [display, setDisplay] = useState('');
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
@@ -25,8 +25,12 @@ function ScrambleName({ trigger }: { trigger: boolean }) {
         .join('');
       setDisplay(scrambled);
       frame++;
-      if (frame <= totalFrames) requestAnimationFrame(tick);
-      else setDisplay(target);
+      if (frame <= totalFrames) {
+        requestAnimationFrame(tick);
+      } else {
+        setDisplay(target);
+        onComplete?.();
+      }
     };
     requestAnimationFrame(tick);
   }, [trigger]);
@@ -73,11 +77,15 @@ export default function LoadingScreen() {
   const [nameVisible, setNameVisible] = useState(false);
   const [scramble, setScramble] = useState(false);
 
+  const handleScrambleDone = () => {
+    // Wait 400ms after the name fully reveals before fading out
+    setTimeout(() => setVisible(false), 400);
+  };
+
   useEffect(() => {
     const t1 = setTimeout(() => setNameVisible(true), 400);
     const t2 = setTimeout(() => setScramble(true), 500);
-    const t3 = setTimeout(() => setVisible(false), 1200);
-    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
+    return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
 
   return (
@@ -212,7 +220,7 @@ export default function LoadingScreen() {
                   userSelect: 'none',
                 }}
               >
-                <ScrambleName trigger={scramble} />
+                <ScrambleName trigger={scramble} onComplete={handleScrambleDone} />
               </motion.p>
             )}
           </AnimatePresence>
