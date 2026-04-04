@@ -489,7 +489,6 @@ function buildSlackMessage(data: OnboardingData): object {
   // ── Footer ──
   parts.push(`\n─────────────────────────────────`)
   parts.push(`:white_check_mark:  Accuracy confirmed: *${data.confirmAccuracy ? 'Yes' : 'No'}*  ·  Terms agreed: *${data.agreeToTerms ? 'Yes' : 'No'}*`)
-  parts.push(`:paperclip:  _Excel backup sent to email_`)
 
   const text = parts.filter(Boolean).join('\n')
   return { text }
@@ -512,34 +511,4 @@ export async function handleOnboardingSubmission(data: OnboardingData) {
   }
 
   console.log(`Onboarding submitted for ${data.businessLegalName} — sent to Slack`)
-
-  // 2. Also send email with Excel attachment (optional backup)
-  try {
-    const nodemailer = await import('nodemailer')
-    const excelBuffer = await generateExcel(data)
-    const safeName = data.businessLegalName.replace(/[^a-zA-Z0-9]/g, '_').replace(/_+/g, '_')
-    const dateStr = new Date().toISOString().split('T')[0]
-    const filename = `Onboarding_${safeName}_${dateStr}.xlsx`
-
-    const transporter = nodemailer.default.createTransport({
-      host: process.env.SMTP_HOST || 'smtp.gmail.com',
-      port: parseInt(process.env.SMTP_PORT || '587'),
-      secure: false,
-      auth: {
-        user: process.env.SMTP_USER || 'zenoscale@gmail.com',
-        pass: process.env.SMTP_PASS || '',
-      },
-    })
-
-    await transporter.sendMail({
-      from: `"Zeno Onboarding" <${process.env.SMTP_USER || 'zenoscale@gmail.com'}>`,
-      to: 'zenoscale@gmail.com',
-      subject: `New Onboarding — ${data.businessLegalName} (${new Date().toLocaleDateString()})`,
-      text: `New onboarding from ${data.businessLegalName}. Full details posted to Slack. Excel attached.`,
-      attachments: [{ filename, content: excelBuffer, contentType: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }],
-    })
-    console.log(`Email backup sent with ${filename}`)
-  } catch (emailErr) {
-    console.warn('Email backup failed (Slack was sent successfully):', emailErr)
-  }
 }
