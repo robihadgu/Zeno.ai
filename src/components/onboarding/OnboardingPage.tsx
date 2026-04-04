@@ -172,18 +172,7 @@ export default function OnboardingPage() {
         </div>
       </div>
 
-      {/* ── Step pills ─────────────────────────────────────────────────── */}
-      <div style={{ paddingTop: '115px', position: 'relative', zIndex: 1 }}>
-        <div style={{ maxWidth: '920px', margin: '0 auto', padding: '20px 28px 0' }}>
-          <div style={{ display: 'flex', gap: '5px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            {STEPS.map((s, i) => (
-              <button key={s.number} onClick={() => { if (s.number < currentStep) { setDirection(-1); setCurrentStep(s.number); setErrors({}) } }}
-                style={{ width: '32px', height: '6px', borderRadius: '3px', border: 'none', background: i + 1 <= currentStep ? '#fff' : 'rgba(255,255,255,0.05)', transition: 'all 0.3s', cursor: i + 1 < currentStep ? 'pointer' : 'default', boxShadow: i + 1 <= currentStep ? '0 0 10px rgba(255,255,255,0.2)' : 'none' }}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
+      <div style={{ paddingTop: '115px' }} />
 
       {/* ── Welcome message (step 1 only) ──────────────────────────────── */}
       {currentStep === 1 && (
