@@ -657,7 +657,15 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '0' }}
+          style={{
+            display: 'flex',
+            flexDirection: isMobile ? 'column' : 'row',
+            gap: '12px',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+            marginBottom: '0',
+            alignItems: 'center',
+          }}
         >
           {/* UPGRADE 3 — Animated gradient border on primary CTA */}
           <div style={{
@@ -665,8 +673,9 @@ export default function Hero() {
             background: 'linear-gradient(135deg, rgba(37,99,235,0.8), rgba(255,255,255,0.3), rgba(37,99,235,0.8))',
             backgroundSize: '200% 200%',
             animation: 'gradient-shift 3s ease infinite',
+            width: isMobile ? '100%' : 'auto',
           }}>
-            <button onClick={openBooking} data-magnetic="true" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: '#fff', color: '#000', fontWeight: 700, fontSize: '14px', padding: '14px 28px', borderRadius: '13px', border: 'none', boxShadow: '0 4px 24px rgba(255,255,255,0.18)', transition: 'all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
+            <button onClick={openBooking} data-magnetic="true" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', background: '#fff', color: '#000', fontWeight: 700, fontSize: '14px', padding: '14px 28px', borderRadius: '13px', border: 'none', boxShadow: '0 4px 24px rgba(255,255,255,0.18)', transition: 'all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)', width: isMobile ? '100%' : 'auto' }}
               onMouseEnter={e => { const el = e.currentTarget; el.style.transform = 'translateY(-2px) scale(1.02)'; el.style.boxShadow = '0 8px 32px rgba(255,255,255,0.25)'; }}
               onMouseLeave={e => { const el = e.currentTarget; el.style.transform = 'translateY(0) scale(1)'; el.style.boxShadow = '0 4px 24px rgba(255,255,255,0.18)'; }}
             >
@@ -674,7 +683,7 @@ export default function Hero() {
               <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </button>
           </div>
-          <a href="#solution" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', backdropFilter: 'blur(8px)', color: 'rgba(255,255,255,0.65)', fontWeight: 500, fontSize: '14px', padding: '14px 24px', borderRadius: '12px', textDecoration: 'none', transition: 'all 0.2s' }}
+          <a href="#solution" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', backdropFilter: 'blur(8px)', color: 'rgba(255,255,255,0.65)', fontWeight: 500, fontSize: '14px', padding: '14px 24px', borderRadius: '12px', textDecoration: 'none', transition: 'all 0.2s', width: isMobile ? '100%' : 'auto' }}
             onMouseEnter={e => { const el = e.currentTarget; el.style.color = '#fff'; el.style.borderColor = 'rgba(255,255,255,0.25)'; el.style.background = 'rgba(255,255,255,0.1)'; }}
             onMouseLeave={e => { const el = e.currentTarget; el.style.color = 'rgba(255,255,255,0.65)'; el.style.borderColor = 'rgba(255,255,255,0.12)'; el.style.background = 'rgba(255,255,255,0.06)'; }}
           >

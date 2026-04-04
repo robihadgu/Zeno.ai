@@ -44,13 +44,19 @@ export default function AuroraBackground() {
       canvas.height = Math.round(H * 0.6);
     };
     resize();
+    canvas.style.opacity = window.matchMedia('(pointer: fine)').matches ? '0.85' : '1';
 
     const onMouse = (e: MouseEvent) => {
       mouse.x = e.clientX / W;
       mouse.y = e.clientY / H;
     };
+    const onTouch = (e: TouchEvent) => {
+      const t = e.touches[0];
+      if (t) { mouse.x = t.clientX / W; mouse.y = t.clientY / H; }
+    };
     window.addEventListener('resize',    resize);
     window.addEventListener('mousemove', onMouse);
+    window.addEventListener('touchmove', onTouch, { passive: true });
 
     // mutable orb phases
     const phases = ORBS.map((_, i) => i * 1.05);
@@ -180,6 +186,7 @@ export default function AuroraBackground() {
       cancelAnimationFrame(raf);
       window.removeEventListener('resize',    resize);
       window.removeEventListener('mousemove', onMouse);
+      window.removeEventListener('touchmove', onTouch);
     };
   }, []);
 
@@ -195,7 +202,6 @@ export default function AuroraBackground() {
         pointerEvents: 'none',
         // slight blur turns the low-res canvas into a silky aurora
         filter: 'blur(32px) saturate(1.4)',
-        opacity: 0.85,
       }}
     />
   );

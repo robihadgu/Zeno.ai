@@ -6,20 +6,26 @@ export default function ExitIntent() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const isDesktop = window.matchMedia('(pointer: fine)').matches;
-    if (!isDesktop) return;
     if (sessionStorage.getItem('exitIntentShown')) return;
 
-    const handleMouseLeave = (e: MouseEvent) => {
-      if (e.clientY < 20) {
-        setVisible(true);
-        sessionStorage.setItem('exitIntentShown', 'true');
-        document.removeEventListener('mouseleave', handleMouseLeave);
-      }
+    const show = () => {
+      setVisible(true);
+      sessionStorage.setItem('exitIntentShown', 'true');
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      clearTimeout(timer);
     };
 
+    const handleMouseLeave = (e: MouseEvent) => {
+      if (e.clientY < 20) show();
+    };
+
+    const timer = setTimeout(show, 10000);
+
     document.addEventListener('mouseleave', handleMouseLeave);
-    return () => document.removeEventListener('mouseleave', handleMouseLeave);
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+    };
   }, []);
 
   const close = () => setVisible(false);
