@@ -121,6 +121,12 @@ export default function OnboardingPage() {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data),
       })
       if (!response.ok) throw new Error('Submission failed')
+      // Ping agent webhook
+      fetch('https://zenoautomation.ai/api/onboarding-complete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: data.businessEmail }),
+      }).catch(() => {})
       localStorage.removeItem(STORAGE_KEY); localStorage.removeItem(STORAGE_STEP_KEY); setSubmitted(true)
     } catch {
       const emailBody = formatSubmissionEmail(data)
