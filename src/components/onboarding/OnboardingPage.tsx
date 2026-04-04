@@ -150,13 +150,6 @@ export default function OnboardingPage() {
         background: 'rgba(5,5,5,0.88)', backdropFilter: 'blur(28px) saturate(1.5)', WebkitBackdropFilter: 'blur(28px) saturate(1.5)',
         borderBottom: '1px solid rgba(255,255,255,0.06)',
       }}>
-        <div style={{ height: '3px', background: 'rgba(255,255,255,0.03)' }}>
-          <motion.div
-            animate={{ width: `${progress}%` }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            style={{ height: '100%', background: '#fff', borderRadius: '0 3px 3px 0', boxShadow: '0 0 16px rgba(255,255,255,0.3)' }}
-          />
-        </div>
         <div style={{ maxWidth: '920px', margin: '0 auto', padding: '14px 28px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <img src="/Apexai.jpg" alt="Zeno logo" style={{ width: '34px', height: '34px', borderRadius: '8px', objectFit: 'cover', boxShadow: '0 2px 12px rgba(255,255,255,0.08)' }} />
