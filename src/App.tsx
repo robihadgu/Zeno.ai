@@ -5,7 +5,6 @@ import ConfettiBurst from './components/ConfettiBurst'
 import SmoothScroll from './components/SmoothScroll'
 import ParticleField from './components/ParticleField'
 import CustomCursor from './components/CustomCursor'
-import ScrollProgress from './components/ScrollProgress'
 import GrainOverlay from './components/GrainOverlay'
 import MagneticEffect from './components/MagneticEffect'
 import CursorSpotlight from './components/CursorSpotlight'
@@ -62,7 +61,6 @@ export default function App() {
         <AuroraBackground />
         {isDesktop && <ParticleField />}
         {isDesktop && <CustomCursor />}
-        <ScrollProgress />
         <GrainOverlay />
         {isDesktop && <MagneticEffect />}
         {isDesktop && <CursorSpotlight />}
