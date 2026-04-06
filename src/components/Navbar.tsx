@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { openBooking } from './BookingModal';
 
-export default function Navbar({ stripVisible = false }: { stripVisible?: boolean }) {
+export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   useEffect(() => {
@@ -11,15 +11,15 @@ export default function Navbar({ stripVisible = false }: { stripVisible?: boolea
   }, []);
 
   const links = [
-    { label: 'How It Works', href: '#solution' },
-    { label: 'Services',     href: '#solution' },
-    { label: 'Pricing',      href: '#pricing'  },
-    { label: 'About',        href: '#why-us'   },
+    { label: 'Services',     href: '#services'     },
+    { label: 'How It Works', href: '#how-it-works'  },
+    { label: 'Pricing',      href: '#pricing'       },
+    { label: 'About',        href: '#cta'           },
   ];
 
   return (
     <nav style={{
-      position: 'fixed', top: stripVisible ? '36px' : 0, left: 0, right: 0, zIndex: 100,
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
       transition: 'all 0.3s ease',
       background: scrolled ? 'rgba(5,5,5,0.75)' : 'transparent',
       backdropFilter: scrolled ? 'blur(40px) saturate(1.8) brightness(0.9)' : 'none',
@@ -70,7 +70,7 @@ export default function Navbar({ stripVisible = false }: { stripVisible?: boolea
               onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-2px) scale(1.02)'; (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 8px 32px rgba(255,255,255,0.25)'; }}
               onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(0) scale(1)'; (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 2px 12px rgba(255,255,255,0.12)'; }}
             >
-              Book a Free Audit
+              Get Your Free Audit
             </button>
             <button className="md:hidden" onClick={() => setMenuOpen(o => !o)} style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '7px', padding: '8px', cursor: 'pointer', color: '#fff' }}>
               <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -86,7 +86,7 @@ export default function Navbar({ stripVisible = false }: { stripVisible?: boolea
               <a key={l.label} href={l.href} onClick={() => setMenuOpen(false)} style={{ display: 'block', padding: '13px 0', fontSize: '15px', fontWeight: 500, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>{l.label}</a>
             ))}
             <button onClick={() => { setMenuOpen(false); openBooking(); }} style={{ display: 'block', width: '100%', marginTop: '16px', textAlign: 'center', background: '#fff', color: '#000', fontWeight: 700, fontSize: '14px', padding: '13px', borderRadius: '9px', border: 'none' }}>
-              Book a Free Audit
+              Get Your Free Audit
             </button>
           </div>
         )}

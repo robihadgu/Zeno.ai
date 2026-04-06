@@ -632,7 +632,7 @@ export default function Hero() {
             >
               <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#fff', boxShadow: '0 0 8px rgba(255,255,255,0.5)', animation: 'pulse-ring 2.5s infinite' }} />
               <span style={{ fontSize: '12px', fontWeight: 500, color: 'rgba(255,255,255,0.65)', letterSpacing: '0.2px' }}>
-                AI Automation for Local Businesses
+                Full-Stack AI Automation
               </span>
             </motion.div>
 
@@ -642,9 +642,9 @@ export default function Hero() {
               transition={{ delay: 0.1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               style={{ fontSize: 'clamp(36px, 5vw, 68px)', fontWeight: 900, color: '#fff', lineHeight: 1.05, letterSpacing: '-2.5px', marginBottom: '22px' }}
             >
-              <ScrambleText text="Stop Losing" delay={200} /><br />
-              <span className="text-shimmer"><ScrambleText text="Customers" delay={500} /></span>
-              <br /><ScrambleText text="to Missed Calls." delay={820} />
+              <ScrambleText text="Your Business." delay={200} /><br />
+              <span className="text-shimmer"><ScrambleText text="Fully Automated." delay={500} /></span>
+              <br /><ScrambleText text="24/7." delay={820} />
             </motion.h1>
 
             {/* Subheadline */}
@@ -653,9 +653,9 @@ export default function Hero() {
               transition={{ delay: 0.2, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               style={{ fontSize: '17px', color: 'rgba(255,255,255,0.42)', lineHeight: 1.75, maxWidth: '520px', marginBottom: '36px' }}
             >
-              Zeno builds AI-powered systems that run your front desk 24/7. We turn missed calls,
-              after-hours inquiries, and website visitors into{' '}
-              <span style={{ color: 'rgba(255,255,255,0.8)', fontWeight: 500 }}>booked appointments</span> — automatically and without extra staff.
+              AI receptionist, automated scheduling, follow-ups, reviews, and client onboarding —
+              one system that runs your entire front office so{' '}
+              <span style={{ color: 'rgba(255,255,255,0.8)', fontWeight: 500 }}>you never lose another lead</span>.
             </motion.p>
 
             {/* CTAs */}
@@ -682,7 +682,7 @@ export default function Hero() {
                   onMouseEnter={e => { const el = e.currentTarget; el.style.transform = 'translateY(-2px) scale(1.02)'; el.style.boxShadow = '0 8px 32px rgba(255,255,255,0.25)'; }}
                   onMouseLeave={e => { const el = e.currentTarget; el.style.transform = 'translateY(0) scale(1)'; el.style.boxShadow = '0 4px 24px rgba(255,255,255,0.18)'; }}
                 >
-                  Book a Free System Audit
+                  Get Your Free Automation Audit
                   <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </button>
               </div>
@@ -690,7 +690,7 @@ export default function Hero() {
                 onMouseEnter={e => { const el = e.currentTarget; el.style.color = '#fff'; el.style.borderColor = 'rgba(255,255,255,0.25)'; el.style.background = 'rgba(255,255,255,0.1)'; }}
                 onMouseLeave={e => { const el = e.currentTarget; el.style.color = 'rgba(255,255,255,0.65)'; el.style.borderColor = 'rgba(255,255,255,0.12)'; el.style.background = 'rgba(255,255,255,0.06)'; }}
               >
-                See How It Works
+                Watch a 2-Min Demo
               </a>
             </motion.div>
 

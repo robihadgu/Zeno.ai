@@ -1,29 +1,15 @@
 import './index.css'
-import { Component, useState, type ReactNode } from 'react'
+import { Component, type ReactNode } from 'react'
 import LoadingScreen from './components/LoadingScreen'
-import ConfettiBurst from './components/ConfettiBurst'
 import SmoothScroll from './components/SmoothScroll'
 import ParticleField from './components/ParticleField'
 import CustomCursor from './components/CustomCursor'
 import GrainOverlay from './components/GrainOverlay'
 import MagneticEffect from './components/MagneticEffect'
 import CursorSpotlight from './components/CursorSpotlight'
-import ClickRipple from './components/ClickRipple'
-import AuroraBackground from './components/AuroraBackground'
 import BookingModal from './components/BookingModal'
-import UrgencyStrip from './components/UrgencyStrip'
-import ExitIntent from './components/ExitIntent'
-import FloatingStats from './components/FloatingStats'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import IndustrySelector from './components/IndustrySelector'
-import TrustBar from './components/TrustBar'
-import LiveTicker from './components/LiveTicker'
-import Problem from './components/Problem'
-import MissedCallStory from './components/MissedCallStory'
-import ROICalculator from './components/ROICalculator'
-import BeforeAfter from './components/BeforeAfter'
-import Solution from './components/Solution'
 import Services from './components/Services'
 import HowItWorks from './components/HowItWorks'
 import Testimonials from './components/Testimonials'
@@ -44,38 +30,20 @@ class ErrorBoundary extends Component<{children:ReactNode},{error:string|null}> 
 }
 
 export default function App() {
-  const [stripVisible, setStripVisible] = useState(true);
-
   return (
     <ErrorBoundary>
       <LoadingScreen />
-      <ConfettiBurst />
       {isDesktop && <SmoothScroll />}
 
-      {/* Fixed overlays */}
-      {stripVisible && <UrgencyStrip onDismiss={() => setStripVisible(false)} />}
-      <ExitIntent />
-      {isDesktop && <FloatingStats />}
-
-      <div style={{ background: '#050505', minHeight: '100vh', overflowX: 'hidden', cursor: isDesktop ? 'none' : 'auto', paddingTop: stripVisible ? '36px' : '0' }}>
-        <AuroraBackground />
+      <div style={{ background: '#050505', minHeight: '100vh', overflowX: 'hidden', cursor: isDesktop ? 'none' : 'auto' }}>
         {isDesktop && <ParticleField />}
         {isDesktop && <CustomCursor />}
         <GrainOverlay />
         {isDesktop && <MagneticEffect />}
         {isDesktop && <CursorSpotlight />}
-        <ClickRipple />
         <BookingModal />
-        <Navbar stripVisible={stripVisible} />
+        <Navbar />
         <Hero />
-        <IndustrySelector />
-        <TrustBar />
-        <LiveTicker />
-        <Problem />
-        <MissedCallStory />
-        <ROICalculator />
-        <BeforeAfter />
-        <Solution />
         <Services />
         <HowItWorks />
         <Testimonials />

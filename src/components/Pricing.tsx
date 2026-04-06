@@ -102,9 +102,9 @@ interface PlanDef {
 function PricingCard({ plan, isElite, billing }: { plan: PlanDef; isElite?: boolean; billing: Billing }) {
   return (
     <div
-      style={{ borderRadius: '28px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.08)', flex: 1, minWidth: 0, position: 'relative', transition: 'transform 0.25s, border-color 0.25s, box-shadow 0.3s ease', boxShadow: isElite ? '0 0 0 1px rgba(37,99,235,0.3), 0 24px 80px rgba(37,99,235,0.1)' : '0 0 0 1px rgba(255,255,255,0.08), 0 24px 60px rgba(0,0,0,0.4)' }}
-      onMouseEnter={e => { const el = e.currentTarget as HTMLDivElement; el.style.transform = 'scale(1.012)'; el.style.borderColor = 'rgba(255,255,255,0.2)'; el.style.boxShadow = isElite ? '0 0 0 1px rgba(37,99,235,0.5), 0 32px 100px rgba(37,99,235,0.2)' : '0 0 0 1px rgba(255,255,255,0.18), 0 32px 80px rgba(0,0,0,0.6)'; }}
-      onMouseLeave={e => { const el = e.currentTarget as HTMLDivElement; el.style.transform = 'scale(1)'; el.style.borderColor = 'rgba(255,255,255,0.08)'; el.style.boxShadow = isElite ? '0 0 0 1px rgba(37,99,235,0.3), 0 24px 80px rgba(37,99,235,0.1)' : '0 0 0 1px rgba(255,255,255,0.08), 0 24px 60px rgba(0,0,0,0.4)'; }}
+      style={{ borderRadius: '28px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.08)', flex: 1, minWidth: 0, position: 'relative', transition: 'transform 0.25s, border-color 0.25s, box-shadow 0.3s ease', boxShadow: isElite ? '0 0 0 1px rgba(255,255,255,0.3), 0 24px 80px rgba(255,255,255,0.1)' : '0 0 0 1px rgba(255,255,255,0.08), 0 24px 60px rgba(0,0,0,0.4)' }}
+      onMouseEnter={e => { const el = e.currentTarget as HTMLDivElement; el.style.transform = 'scale(1.012)'; el.style.borderColor = 'rgba(255,255,255,0.2)'; el.style.boxShadow = isElite ? '0 0 0 1px rgba(255,255,255,0.5), 0 32px 100px rgba(255,255,255,0.2)' : '0 0 0 1px rgba(255,255,255,0.18), 0 32px 80px rgba(0,0,0,0.6)'; }}
+      onMouseLeave={e => { const el = e.currentTarget as HTMLDivElement; el.style.transform = 'scale(1)'; el.style.borderColor = 'rgba(255,255,255,0.08)'; el.style.boxShadow = isElite ? '0 0 0 1px rgba(255,255,255,0.3), 0 24px 80px rgba(255,255,255,0.1)' : '0 0 0 1px rgba(255,255,255,0.08), 0 24px 60px rgba(0,0,0,0.4)'; }}
     >
       {/* Most Popular badge */}
       {isElite && (
@@ -119,9 +119,9 @@ function PricingCard({ plan, isElite, billing }: { plan: PlanDef; isElite?: bool
         top: 0, left: '20%', right: '20%',
         height: '1px',
         background: isElite
-          ? 'linear-gradient(90deg, transparent, #2563EB, transparent)'
+          ? 'linear-gradient(90deg, transparent, #fff, transparent)'
           : 'linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)',
-        boxShadow: isElite ? '0 0 20px 2px rgba(37,99,235,0.5)' : '0 0 20px 2px rgba(255,255,255,0.15)',
+        boxShadow: isElite ? '0 0 20px 2px rgba(255,255,255,0.5)' : '0 0 20px 2px rgba(255,255,255,0.15)',
         zIndex: 5,
       }} />
 
@@ -215,7 +215,7 @@ export default function Pricing() {
   };
 
   const elite: PlanDef = {
-    badge: 'The Elite System',
+    badge: 'Full Autopilot',
     description: 'For high-volume businesses that want a dedicated AI partner — not just a tool.',
     monthly: 1497, annual: 1197, savingsYear: 3600, setupFee: 750,
     roi: 'Built for businesses doing $500K+ in annual revenue',
@@ -370,7 +370,7 @@ export default function Pricing() {
             onMouseEnter={e => { const el = e.currentTarget as HTMLButtonElement; el.style.transform = 'translateY(-2px) scale(1.02)'; el.style.boxShadow = '0 8px 32px rgba(255,255,255,0.25)'; }}
             onMouseLeave={e => { const el = e.currentTarget as HTMLButtonElement; el.style.transform = 'translateY(0) scale(1)'; el.style.boxShadow = '0 4px 24px rgba(255,255,255,0.18)'; }}
           >
-            Book a Free System Audit
+            Get Your Free Automation Audit
             <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
           <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.22)' }}>No pitch. No pressure. Just answers.</p>
