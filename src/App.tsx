@@ -26,7 +26,6 @@ import BeforeAfter from './components/BeforeAfter'
 import Solution from './components/Solution'
 import Services from './components/Services'
 import HowItWorks from './components/HowItWorks'
-import WhyUs from './components/WhyUs'
 import Testimonials from './components/Testimonials'
 import Pricing from './components/Pricing'
 import FinalCTA from './components/FinalCTA'
@@ -79,7 +78,6 @@ export default function App() {
         <Solution />
         <Services />
         <HowItWorks />
-        <WhyUs />
         <Testimonials />
         <Pricing />
         <FinalCTA />
