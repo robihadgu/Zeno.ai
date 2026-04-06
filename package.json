@@ -12,6 +12,8 @@
     "dev:all": "npx concurrently \"npm run dev\" \"npm run server\""
   },
   "dependencies": {
+    "@splinetool/react-spline": "^4.1.0",
+    "@splinetool/runtime": "^1.12.74",
     "clsx": "^2.1.1",
     "cors": "^2.8.6",
     "dotenv": "^17.4.0",

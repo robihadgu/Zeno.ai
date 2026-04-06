@@ -197,8 +197,8 @@ export default function Solution() {
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
 
         <div className="fade-up" style={{ textAlign: 'center', marginBottom: '80px' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(37,99,235,0.3)', borderRadius: '999px', padding: '5px 14px', marginBottom: '20px', backdropFilter: 'blur(10px)', boxShadow: '0 0 12px rgba(37,99,235,0.25)' }}>
-            <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#2563EB' }} />
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '999px', padding: '5px 14px', marginBottom: '20px', backdropFilter: 'blur(10px)', boxShadow: '0 0 12px rgba(255,255,255,0.08)' }}>
+            <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#fff' }} />
             <span style={{ fontSize: '12px', fontWeight: 600, color: 'rgba(255,255,255,0.6)' }}>The Solution</span>
           </div>
           <h2 style={{ fontSize: 'clamp(28px, 4vw, 46px)', fontWeight: 800, color: '#fff', letterSpacing: '-2px', lineHeight: 1.12, marginBottom: '16px' }}>

@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
+@theme inline {
+  --animate-star-btn: star-btn calc(var(--duration)*1s) linear infinite;
+}
+
 /* ─── B&W Design tokens ──────────────────────────── */
 :root {
   --black:      #050505;
@@ -131,6 +135,41 @@ body {
   content:''; position:absolute; inset:0; pointer-events:none;
   background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px);
   background-size: 28px 28px;
+}
+
+/* ─── Star button orbit ───────────────────────────── */
+@keyframes star-btn {
+  0%   { offset-distance: 0%;   }
+  100% { offset-distance: 100%; }
+}
+
+/* ─── Spotlight animation ─────────────────────────── */
+@keyframes spotlight {
+  0%   { opacity: 0; transform: translate(-72%, -62%) scale(0.5); }
+  100% { opacity: 1; transform: translate(-50%, -40%) scale(1); }
+}
+.animate-spotlight {
+  animation: spotlight 2s ease forwards 0.7s;
+}
+
+/* ─── Gradient shift (CTA border) ─────────────────── */
+@keyframes gradient-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ─── Spline loader ───────────────────────────────── */
+.loader {
+  width: 28px;
+  height: 28px;
+  border: 2px solid rgba(255,255,255,0.15);
+  border-top-color: rgba(255,255,255,0.6);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
 /* ─── Scrollbar ────────────────────────────────────── */

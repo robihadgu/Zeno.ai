@@ -24,6 +24,7 @@ import MissedCallStory from './components/MissedCallStory'
 import ROICalculator from './components/ROICalculator'
 import BeforeAfter from './components/BeforeAfter'
 import Solution from './components/Solution'
+import Services from './components/Services'
 import HowItWorks from './components/HowItWorks'
 import WhyUs from './components/WhyUs'
 import Testimonials from './components/Testimonials'
@@ -76,6 +77,7 @@ export default function App() {
         <ROICalculator />
         <BeforeAfter />
         <Solution />
+        <Services />
         <HowItWorks />
         <WhyUs />
         <Testimonials />

@@ -601,7 +601,7 @@ export default function Hero() {
         transform: 'translateX(-50%)',
         width: '900px',
         height: '600px',
-        background: 'radial-gradient(ellipse at center, rgba(37,99,235,0.08) 0%, transparent 70%)',
+        background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.03) 0%, transparent 70%)',
         pointerEvents: 'none',
         zIndex: 0,
       }} />
@@ -618,14 +618,14 @@ export default function Hero() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           style={{
             display: 'inline-flex', alignItems: 'center', gap: '8px',
-            background: 'linear-gradient(135deg, rgba(37,99,235,0.15) 0%, rgba(255,255,255,0.05) 100%)',
-            border: '1px solid rgba(37,99,235,0.4)',
+            background: 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.05) 100%)',
+            border: '1px solid rgba(255,255,255,0.15)',
             borderRadius: '999px', padding: '6px 16px', marginBottom: '36px',
             backdropFilter: 'blur(12px)',
-            boxShadow: '0 0 20px rgba(37,99,235,0.2), inset 0 1px 0 rgba(255,255,255,0.1)',
+            boxShadow: '0 0 20px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.1)',
           }}
         >
-          <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#2563EB', boxShadow: '0 0 8px #2563EB', animation: 'pulse-ring 2.5s infinite' }} />
+          <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#fff', boxShadow: '0 0 8px rgba(255,255,255,0.5)', animation: 'pulse-ring 2.5s infinite' }} />
           <span style={{ fontSize: '12px', fontWeight: 500, color: 'rgba(255,255,255,0.65)', letterSpacing: '0.2px' }}>
             AI Automation for Local Businesses
           </span>
@@ -670,7 +670,7 @@ export default function Hero() {
           {/* UPGRADE 3 — Animated gradient border on primary CTA */}
           <div style={{
             position: 'relative', display: 'inline-flex', borderRadius: '14px', padding: '1px',
-            background: 'linear-gradient(135deg, rgba(37,99,235,0.8), rgba(255,255,255,0.3), rgba(37,99,235,0.8))',
+            background: 'linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.3), rgba(255,255,255,0.4))',
             backgroundSize: '200% 200%',
             animation: 'gradient-shift 3s ease infinite',
             width: isMobile ? '100%' : 'auto',
