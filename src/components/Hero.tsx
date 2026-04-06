@@ -609,11 +609,13 @@ export default function Hero() {
           flexDirection: isMobile ? 'column' : 'row',
           alignItems: 'center',
           gap: isMobile ? '40px' : '0',
-          minHeight: isMobile ? 'auto' : 'calc(100vh - 112px)',
+          minHeight: isMobile ? 'auto' : '500px',
+          height: isMobile ? 'auto' : 'calc(100vh - 200px)',
+          maxHeight: isMobile ? 'none' : '650px',
         }}>
 
-          {/* ── Left: Copy + CTAs ──────────────────��───────────────────────── */}
-          <div style={{ flex: 1, textAlign: 'left', paddingRight: isMobile ? 0 : '40px' }}>
+          {/* ── Left: Copy + CTAs ──────────────────────────────────────────── */}
+          <div style={{ flex: '0 0 45%', textAlign: 'left', paddingRight: isMobile ? 0 : '40px' }}>
 
             {/* Badge */}
             <motion.div
@@ -727,15 +729,15 @@ export default function Hero() {
 
           {/* ── Right: 3D Robot ──────────────────────────────────────────────── */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
             style={{
-              flex: '1 1 50%',
+              flex: '0 0 55%',
               position: 'relative',
-              minHeight: isMobile ? '420px' : '700px',
+              height: isMobile ? '400px' : '100%',
+              minHeight: isMobile ? '400px' : '500px',
               width: '100%',
-              marginRight: isMobile ? 0 : '-60px',
             }}
           >
             <SplineScene
