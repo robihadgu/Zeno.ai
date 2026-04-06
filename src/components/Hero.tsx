@@ -725,16 +725,17 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* ── Right: 3D Robot ─────────────────────────────────────────��───── */}
+          {/* ── Right: 3D Robot ──────────────────────────────────────────────── */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
             style={{
-              flex: 1,
+              flex: '1 1 50%',
               position: 'relative',
-              minHeight: isMobile ? '400px' : '600px',
+              minHeight: isMobile ? '420px' : '700px',
               width: '100%',
+              marginRight: isMobile ? 0 : '-60px',
             }}
           >
             <SplineScene
