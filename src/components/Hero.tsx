@@ -899,7 +899,7 @@ export default function Hero() {
             onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.color = 'rgba(255,255,255,0.75)'; }}
             onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = 'rgba(255,255,255,0.4)'; }}
           >
-            → Watch Zeno turn a missed call into a $350 booking in seconds
+            → Watch Zeno respond to a missed call in real-time
           </button>
         </div>
 
