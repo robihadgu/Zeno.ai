@@ -64,15 +64,15 @@ function AnimatedPrice({ monthly, annual, billing }: { monthly: number; annual: 
   const price = billing === 'monthly' ? monthly : annual;
   return (
     <div style={{ display: 'flex', alignItems: 'flex-start', gap: '4px', lineHeight: 1 }}>
-      <span style={{ fontSize: '22px', fontWeight: 700, color: 'rgba(255,255,255,0.5)', marginTop: '14px' }}>$</span>
+      <span style={{ fontSize: '22px', fontWeight: 700, color: 'rgba(255,255,255,0.5)', alignSelf: 'flex-end', marginBottom: '14px' }}>$</span>
       <AnimatePresence mode="wait">
         <motion.span key={price} initial={{ opacity: 0, y: -18 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 18 }}
           transition={{ duration: 0.22, ease: 'easeOut' }}
-          style={{ fontSize: '96px', fontWeight: 800, color: '#fff', letterSpacing: '-5px', display: 'block' }}>
+          style={{ fontSize: 'clamp(56px, 12vw, 96px)', fontWeight: 800, color: '#fff', letterSpacing: '-5px', display: 'block' }}>
           {price}
         </motion.span>
       </AnimatePresence>
-      <span style={{ fontSize: '15px', color: 'rgba(255,255,255,0.35)', marginTop: '66px' }}>/mo</span>
+      <span style={{ fontSize: '15px', color: 'rgba(255,255,255,0.35)', alignSelf: 'flex-end', marginBottom: '14px' }}>/mo</span>
     </div>
   );
 }
@@ -126,7 +126,7 @@ function PricingCard({ plan, isElite, billing }: { plan: PlanDef; isElite?: bool
       }} />
 
       {/* ── TOP HALF (dark) ── */}
-      <div style={{ background: '#111111', padding: '36px 36px 32px' }}>
+      <div style={{ background: '#111111', padding: 'clamp(24px, 4vw, 36px) clamp(20px, 4vw, 36px) 32px' }}>
         {/* Badge pill */}
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '999px', padding: '5px 14px', marginBottom: '18px' }}>
           <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: isElite ? '#C9A84C' : '#fff', flexShrink: 0 }} />
@@ -157,7 +157,7 @@ function PricingCard({ plan, isElite, billing }: { plan: PlanDef; isElite?: bool
       </div>
 
       {/* ── BOTTOM HALF (light) ── */}
-      <div style={{ background: '#f9f9f9', padding: '30px 36px 36px' }}>
+      <div style={{ background: '#f9f9f9', padding: '30px clamp(20px, 4vw, 36px) 36px' }}>
         <p style={{ fontSize: '10px', fontWeight: 700, color: '#aaa', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '16px' }}>{plan.featuresLabel}</p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: '10px', marginBottom: '26px' }}>
           {plan.features.map((f, i) => <FeatureCard key={i} {...f} />)}

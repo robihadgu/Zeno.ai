@@ -68,7 +68,7 @@ export default function Testimonials() {
             Real practices. Real numbers.
           </h2>
           <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.35)', maxWidth: '400px', margin: '0 auto' }}>
-            Hover over a client to hear their story
+            Hover or tap a client to hear their story
           </p>
         </motion.div>
 

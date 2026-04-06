@@ -4,7 +4,7 @@ export default function Footer() {
       {/* UPGRADE 11 — Top gradient beam */}
       <div style={{
         position: 'absolute', top: 0, left: '10%', right: '10%', height: '1px',
-        background: 'linear-gradient(90deg, transparent, rgba(37,99,235,0.5), transparent)',
+        background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)',
       }} />
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '32px', justifyContent: 'space-between', alignItems: 'flex-start', paddingBottom: '40px', borderBottom: '1px solid rgba(255,255,255,0.05)', marginBottom: '28px' }}>
@@ -22,14 +22,14 @@ export default function Footer() {
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '48px' }}>
             {[
               { heading: 'Services', links: [
-                { label: 'Missed-Call Text Back', href: '#solution' },
-                { label: 'AI Receptionist',       href: '#solution' },
-                { label: 'Review Automation',     href: '#solution' },
-                { label: 'Appointment Booking',   href: '#solution' },
+                { label: 'Missed-Call Text Back', href: '#services' },
+                { label: 'AI Receptionist',       href: '#services' },
+                { label: 'Review Automation',     href: '#services' },
+                { label: 'Appointment Booking',   href: '#services' },
               ]},
               { heading: 'Company', links: [
                 { label: 'About',        href: '#'                          },
-                { label: 'How It Works', href: '#solution'                  },
+                { label: 'How It Works', href: '#how-it-works'               },
                 { label: 'Pricing',      href: '#pricing'                   },
                 { label: 'Contact',      href: 'mailto:hello@zenoautomation.ai' },
               ]},

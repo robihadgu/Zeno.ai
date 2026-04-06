@@ -14,11 +14,16 @@ type ComponentProps = {
 };
 
 export const TypewriterTestimonial: React.FC<ComponentProps> = ({ testimonials }) => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [hasBeenHovered, setHasBeenHovered] = useState<boolean[]>(new Array(testimonials.length).fill(false));
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [hasBeenActive, setHasBeenActive] = useState<boolean[]>(new Array(testimonials.length).fill(false));
   const [typedText, setTypedText] = useState('');
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   const typewriterTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const currentTextRef = useRef('');
+
+  useEffect(() => {
+    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  }, []);
 
   const startTypewriter = useCallback((text: string) => {
     if (typewriterTimeoutRef.current) {
@@ -47,9 +52,9 @@ export const TypewriterTestimonial: React.FC<ComponentProps> = ({ testimonials }
     currentTextRef.current = '';
   }, []);
 
-  const handleMouseEnter = useCallback((index: number) => {
-    setHoveredIndex(index);
-    setHasBeenHovered(prev => {
+  const activate = useCallback((index: number) => {
+    setActiveIndex(index);
+    setHasBeenActive(prev => {
       const updated = [...prev];
       updated[index] = true;
       return updated;
@@ -57,10 +62,19 @@ export const TypewriterTestimonial: React.FC<ComponentProps> = ({ testimonials }
     startTypewriter(testimonials[index].text);
   }, [testimonials, startTypewriter]);
 
-  const handleMouseLeave = useCallback(() => {
-    setHoveredIndex(null);
+  const deactivate = useCallback(() => {
+    setActiveIndex(null);
     stopTypewriter();
   }, [stopTypewriter]);
+
+  const handleTap = useCallback((index: number) => {
+    if (!isTouchDevice) return;
+    if (activeIndex === index) {
+      deactivate();
+    } else {
+      activate(index);
+    }
+  }, [isTouchDevice, activeIndex, activate, deactivate]);
 
   useEffect(() => {
     return () => {
@@ -69,48 +83,51 @@ export const TypewriterTestimonial: React.FC<ComponentProps> = ({ testimonials }
   }, [stopTypewriter]);
 
   return (
-    <div className="flex justify-center items-center gap-6 flex-wrap">
+    <div className="flex justify-center items-center gap-4 md:gap-6 flex-wrap" style={{ padding: '0 8px' }}>
       {testimonials.map((testimonial, index) => (
         <motion.div
           key={index}
           className="relative flex flex-col items-center"
-          onMouseEnter={() => handleMouseEnter(index)}
-          onMouseLeave={handleMouseLeave}
-          whileHover={{ scale: 1.05 }}
+          onMouseEnter={() => !isTouchDevice && activate(index)}
+          onMouseLeave={() => !isTouchDevice && deactivate()}
+          onClick={() => handleTap(index)}
+          whileHover={isTouchDevice ? {} : { scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
           <motion.img
             src={testimonial.image}
             alt={testimonial.name}
-            className="w-16 h-16 md:w-20 md:h-20 rounded-full border-4 object-cover"
+            className="w-14 h-14 md:w-20 md:h-20 rounded-full border-4 object-cover"
             style={{ cursor: 'pointer' }}
             animate={{
-              borderColor: (hoveredIndex === index || hasBeenHovered[index]) ? 'rgba(255,255,255,0.6)' : 'rgba(255,255,255,0.12)',
+              borderColor: (activeIndex === index || hasBeenActive[index]) ? 'rgba(255,255,255,0.6)' : 'rgba(255,255,255,0.12)',
             }}
             transition={{ duration: 0.3 }}
           />
-          <p className="mt-2 text-xs text-center" style={{ color: 'rgba(255,255,255,0.4)', maxWidth: '80px' }}>
+          <p className="mt-1 md:mt-2 text-xs text-center" style={{ color: 'rgba(255,255,255,0.4)', maxWidth: '72px', fontSize: '10px' }}>
             {testimonial.name}
           </p>
           <AnimatePresence>
-            {hoveredIndex === index && (
+            {activeIndex === index && (
               <motion.div
                 initial={{ opacity: 0, scale: 0.8, y: -10 }}
                 animate={{ opacity: 1, scale: 1, y: -20 }}
                 exit={{ opacity: 0, scale: 0.8, y: -10 }}
                 transition={{ duration: 0.4 }}
-                className="absolute bottom-24 md:bottom-28 px-5 py-4 rounded-2xl shadow-2xl w-64 md:w-72 z-50"
+                className="absolute bottom-20 md:bottom-28 px-4 md:px-5 py-3 md:py-4 rounded-2xl shadow-2xl w-56 md:w-72 z-50"
                 style={{
                   background: 'rgba(255,255,255,0.95)',
                   backdropFilter: 'blur(12px)',
                   border: '1px solid rgba(0,0,0,0.08)',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
                 }}
               >
-                <div className="h-28 overflow-hidden whitespace-pre-wrap text-sm leading-relaxed" style={{ color: '#1a1a1a' }}>
+                <div className="h-24 md:h-28 overflow-hidden whitespace-pre-wrap text-xs md:text-sm leading-relaxed" style={{ color: '#1a1a1a' }}>
                   "{typedText}
                   <span className="animate-blink" style={{ borderRight: '2px solid #333', marginLeft: '1px' }}>&nbsp;</span>"
                 </div>
-                <p className="mt-3 text-right font-bold text-xs" style={{ color: '#000' }}>{testimonial.name}</p>
+                <p className="mt-2 md:mt-3 text-right font-bold text-xs" style={{ color: '#000' }}>{testimonial.name}</p>
                 <p className="text-right text-xs" style={{ color: '#666' }}>{testimonial.jobtitle}</p>
                 {/* Speech bubble tail */}
                 <div className="absolute left-1/2 transform -translate-x-1/2 -bottom-4 flex flex-col items-center">
@@ -123,6 +140,11 @@ export const TypewriterTestimonial: React.FC<ComponentProps> = ({ testimonials }
           </AnimatePresence>
         </motion.div>
       ))}
+      {isTouchDevice && (
+        <p style={{ width: '100%', textAlign: 'center', fontSize: '12px', color: 'rgba(255,255,255,0.25)', marginTop: '8px' }}>
+          Tap a photo to read their story
+        </p>
+      )}
     </div>
   );
 };
