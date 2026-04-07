@@ -66,8 +66,7 @@ export function CursorSpotlight({
     <motion.div
       ref={containerRef}
       className={cn(
-        'pointer-events-none absolute rounded-full bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops),transparent_80%)] blur-xl transition-opacity duration-200',
-        'from-zinc-50 via-zinc-100 to-zinc-200',
+        'pointer-events-none absolute rounded-full transition-opacity duration-200',
         isHovered ? 'opacity-100' : 'opacity-0',
         className
       )}
@@ -76,6 +75,9 @@ export function CursorSpotlight({
         height: size,
         left: spotlightLeft,
         top: spotlightTop,
+        zIndex: 20,
+        background: 'radial-gradient(circle at center, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.1) 35%, transparent 70%)',
+        filter: 'blur(15px)',
       }}
     />
   );
