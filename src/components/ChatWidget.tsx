@@ -5,7 +5,7 @@ interface Message {
   content: string
 }
 
-const CHAT_API = 'https://zeno-onboarding.vercel.app/api/chat'
+const CHAT_API = 'https://zenoautomation.ai/api/chat'
 
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false)
