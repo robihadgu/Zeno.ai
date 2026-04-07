@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useCallback, useEffect, useRef, useState, useMemo } from 'react';
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import ScrambleText from './ScrambleText';
 import { openBooking } from './BookingModal';
 import { fireConfetti } from './ConfettiBurst';
@@ -291,9 +291,27 @@ function SpeedTestDemo({ onClose }: { onClose: () => void }) {
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const robotRef = useRef<HTMLDivElement>(null);
+  const robotWrapRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [showDemo, setShowDemo] = useState(false);
   const [celebrating, setCelebrating] = useState(false);
+  const [robotHovered, setRobotHovered] = useState(false);
+
+  // Mouse-tracking for 3D tilt
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const spring = { damping: 25, stiffness: 150, mass: 0.8 };
+  const springX = useSpring(mouseX, spring);
+  const springY = useSpring(mouseY, spring);
+  const rotateY = useTransform(springX, [-0.5, 0.5], isMobile ? [0, 0] : [-8, 8]);
+  const rotateX = useTransform(springY, [-0.5, 0.5], isMobile ? [0, 0] : [6, -6]);
+
+  // Floating orbital data points
+  const orbitals = useMemo(() => [
+    { icon: '⚡', label: '4s Response', angle: 0, radius: 220, speed: 22, delay: 0 },
+    { icon: '📈', label: '+34% Bookings', angle: 120, radius: 240, speed: 26, delay: 0.4 },
+    { icon: '🤖', label: '24/7 Active', angle: 240, radius: 210, speed: 20, delay: 0.8 },
+  ], []);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -301,6 +319,20 @@ export default function Hero() {
     window.addEventListener('resize', check);
     return () => window.removeEventListener('resize', check);
   }, []);
+
+  /* ── Mouse tracking ────────────────────────────────────────────────────── */
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (isMobile || !robotWrapRef.current) return;
+    const rect = robotWrapRef.current.getBoundingClientRect();
+    mouseX.set((e.clientX - rect.left) / rect.width - 0.5);
+    mouseY.set((e.clientY - rect.top) / rect.height - 0.5);
+  }, [mouseX, mouseY, isMobile]);
+
+  const handleMouseLeave = useCallback(() => {
+    mouseX.set(0);
+    mouseY.set(0);
+    setRobotHovered(false);
+  }, [mouseX, mouseY]);
 
   /* ── Scroll-driven parallax for robot ──────────────────────────────────── */
   useEffect(() => {
@@ -472,47 +504,218 @@ export default function Hero() {
 
           {/* ── Right: 3D Robot ──────────────────────────────────────────────── */}
           <motion.div
+            ref={robotWrapRef}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+            onMouseMove={handleMouseMove}
+            onMouseEnter={() => setRobotHovered(true)}
+            onMouseLeave={handleMouseLeave}
             style={{
               flex: '0 0 55%',
               position: 'relative',
               height: isMobile ? '400px' : '100%',
               minHeight: isMobile ? '400px' : '500px',
               width: '100%',
+              perspective: 900,
             }}
           >
-            <div
-              ref={robotRef}
-              style={{ width: '100%', height: '100%', willChange: 'transform', transition: 'transform 0.15s ease-out' }}
-            >
-              <SplineScene
-                scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-                className="w-full h-full"
-              />
-            </div>
+            {/* Ambient breathing glow behind robot */}
+            <motion.div
+              animate={{ opacity: [0.15, 0.35, 0.15], scale: [0.95, 1.05, 0.95] }}
+              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+              style={{
+                position: 'absolute', top: '50%', left: '50%',
+                width: '400px', height: '400px',
+                transform: 'translate(-50%, -50%)',
+                borderRadius: '50%',
+                background: 'radial-gradient(circle, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.03) 50%, transparent 70%)',
+                filter: 'blur(40px)',
+                pointerEvents: 'none',
+              }}
+            />
 
-            {/* Celebration glow pulse on CTA click */}
+            {/* 3D tilt container */}
+            <motion.div
+              style={{ rotateX, rotateY, transformStyle: 'preserve-3d', width: '100%', height: '100%' }}
+            >
+              <div
+                ref={robotRef}
+                style={{ width: '100%', height: '100%', willChange: 'transform', transition: 'transform 0.15s ease-out' }}
+              >
+                <SplineScene
+                  scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                  className="w-full h-full"
+                />
+              </div>
+            </motion.div>
+
+            {/* Hover scan line */}
             <AnimatePresence>
-              {celebrating && (
+              {robotHovered && !isMobile && (
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.6 }}
-                  animate={{ opacity: [0, 0.8, 0], scale: [0.6, 1.3, 1.6] }}
+                  initial={{ top: '0%', opacity: 0 }}
+                  animate={{ top: ['0%', '100%', '0%'], opacity: [0, 0.6, 0] }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 1.2, ease: 'easeOut' }}
+                  transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
                   style={{
-                    position: 'absolute', top: '50%', left: '50%',
-                    width: '300px', height: '300px',
-                    transform: 'translate(-50%, -50%)',
-                    borderRadius: '50%',
-                    background: 'radial-gradient(circle, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.08) 40%, transparent 70%)',
+                    position: 'absolute', left: '10%', right: '10%',
+                    height: '2px',
+                    background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.5), rgba(255,255,255,0.8), rgba(255,255,255,0.5), transparent)',
+                    boxShadow: '0 0 15px rgba(255,255,255,0.3), 0 0 40px rgba(255,255,255,0.1)',
                     pointerEvents: 'none',
-                    filter: 'blur(20px)',
+                    zIndex: 10,
                   }}
                 />
               )}
             </AnimatePresence>
+
+            {/* Orbiting data points — desktop only */}
+            {!isMobile && orbitals.map((orb, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.2 + orb.delay, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                style={{
+                  position: 'absolute', top: '50%', left: '50%',
+                  width: 0, height: 0,
+                  pointerEvents: 'none',
+                  zIndex: 15,
+                }}
+              >
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: orb.speed, repeat: Infinity, ease: 'linear' }}
+                  style={{ position: 'absolute', width: 0, height: 0 }}
+                >
+                  <motion.div
+                    animate={{ rotate: -360 }}
+                    transition={{ duration: orb.speed, repeat: Infinity, ease: 'linear' }}
+                    style={{
+                      position: 'absolute',
+                      left: orb.radius,
+                      top: 0,
+                      transform: `rotate(${orb.angle}deg) translateX(0)`,
+                    }}
+                  >
+                    <motion.div
+                      animate={{ y: [0, -6, 0] }}
+                      transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut', delay: i * 0.3 }}
+                      style={{
+                        display: 'flex', alignItems: 'center', gap: '6px',
+                        background: 'rgba(10,10,10,0.9)',
+                        backdropFilter: 'blur(16px)',
+                        border: '1px solid rgba(255,255,255,0.12)',
+                        borderRadius: '10px',
+                        padding: '6px 10px',
+                        whiteSpace: 'nowrap',
+                        boxShadow: '0 4px 20px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06)',
+                      }}
+                    >
+                      <span style={{ fontSize: '12px' }}>{orb.icon}</span>
+                      <span style={{ fontSize: '10px', fontWeight: 700, color: 'rgba(255,255,255,0.7)', letterSpacing: '-0.2px' }}>{orb.label}</span>
+                    </motion.div>
+                  </motion.div>
+                </motion.div>
+              </motion.div>
+            ))}
+
+            {/* Orbit ring trace */}
+            {!isMobile && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.08 }}
+                transition={{ delay: 1.2, duration: 1 }}
+                style={{
+                  position: 'absolute', top: '50%', left: '50%',
+                  width: '460px', height: '460px',
+                  transform: 'translate(-50%, -50%)',
+                  borderRadius: '50%',
+                  border: '1px solid rgba(255,255,255,0.15)',
+                  pointerEvents: 'none',
+                }}
+              />
+            )}
+
+            {/* Celebration glow pulse on CTA click */}
+            <AnimatePresence>
+              {celebrating && (
+                <>
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.6 }}
+                    animate={{ opacity: [0, 0.8, 0], scale: [0.6, 1.3, 1.6] }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1.2, ease: 'easeOut' }}
+                    style={{
+                      position: 'absolute', top: '50%', left: '50%',
+                      width: '300px', height: '300px',
+                      transform: 'translate(-50%, -50%)',
+                      borderRadius: '50%',
+                      background: 'radial-gradient(circle, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.08) 40%, transparent 70%)',
+                      pointerEvents: 'none',
+                      filter: 'blur(20px)',
+                    }}
+                  />
+                  {/* Expanding ring */}
+                  <motion.div
+                    initial={{ opacity: 0.8, scale: 0.3 }}
+                    animate={{ opacity: 0, scale: 2 }}
+                    transition={{ duration: 1, ease: 'easeOut' }}
+                    style={{
+                      position: 'absolute', top: '50%', left: '50%',
+                      width: '200px', height: '200px',
+                      transform: 'translate(-50%, -50%)',
+                      borderRadius: '50%',
+                      border: '2px solid rgba(255,255,255,0.4)',
+                      pointerEvents: 'none',
+                    }}
+                  />
+                  <motion.div
+                    initial={{ opacity: 0.6, scale: 0.3 }}
+                    animate={{ opacity: 0, scale: 2.2 }}
+                    transition={{ duration: 1.2, ease: 'easeOut', delay: 0.15 }}
+                    style={{
+                      position: 'absolute', top: '50%', left: '50%',
+                      width: '200px', height: '200px',
+                      transform: 'translate(-50%, -50%)',
+                      borderRadius: '50%',
+                      border: '1px solid rgba(255,255,255,0.25)',
+                      pointerEvents: 'none',
+                    }}
+                  />
+                </>
+              )}
+            </AnimatePresence>
+
+            {/* Status indicator — pulsing "AI Active" badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.5, duration: 0.6 }}
+              style={{
+                position: 'absolute',
+                bottom: isMobile ? '10px' : '30px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                display: 'flex', alignItems: 'center', gap: '8px',
+                background: 'rgba(10,10,10,0.85)',
+                backdropFilter: 'blur(16px)',
+                border: '1px solid rgba(255,255,255,0.1)',
+                borderRadius: '999px',
+                padding: '6px 14px',
+                zIndex: 15,
+              }}
+            >
+              <motion.div
+                animate={{ opacity: [0.5, 1, 0.5], scale: [0.9, 1.1, 0.9] }}
+                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#4ade80', boxShadow: '0 0 8px rgba(74,222,128,0.6)' }}
+              />
+              <span style={{ fontSize: '10px', fontWeight: 600, color: 'rgba(255,255,255,0.5)', letterSpacing: '0.5px', textTransform: 'uppercase' }}>
+                AI Active
+              </span>
+            </motion.div>
           </motion.div>
         </div>
       </div>
