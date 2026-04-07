@@ -5,7 +5,7 @@ interface Message {
   content: string
 }
 
-const CHAT_API = 'https://zenoautomation.ai/api/chat'
+const CHAT_API = '/api/chat'
 
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false)
