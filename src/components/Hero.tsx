@@ -5,6 +5,7 @@ import { openBooking } from './BookingModal';
 import { fireConfetti } from './ConfettiBurst';
 import { SplineScene } from '@/components/ui/splite';
 import { Spotlight } from '@/components/ui/spotlight';
+import { CursorSpotlight } from '@/components/ui/cursor-spotlight';
 
 /* ─── Speed-test demo modal — Full Pipeline Showcase ─────────────────────── */
 
@@ -485,8 +486,9 @@ export default function Hero() {
           >
             <div
               ref={robotRef}
-              style={{ width: '100%', height: '100%', willChange: 'transform', transition: 'transform 0.15s ease-out' }}
+              style={{ width: '100%', height: '100%', willChange: 'transform', transition: 'transform 0.15s ease-out', position: 'relative', overflow: 'hidden' }}
             >
+              <CursorSpotlight size={300} springOptions={{ bounce: 0, damping: 30, stiffness: 200 }} />
               <SplineScene
                 scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
                 className="w-full h-full"
