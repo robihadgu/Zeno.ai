@@ -8,7 +8,6 @@ import GrainOverlay from './components/GrainOverlay'
 import MagneticEffect from './components/MagneticEffect'
 import CursorSpotlight from './components/CursorSpotlight'
 import BookingModal from './components/BookingModal'
-import ChatWidget from './components/ChatWidget'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Services from './components/Services'
@@ -51,7 +50,6 @@ export default function App() {
         <Pricing />
         <FinalCTA />
         <Footer />
-        <ChatWidget />
       </div>
     </ErrorBoundary>
   )
