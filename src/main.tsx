@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import OnboardingPage from './components/onboarding/OnboardingPage.tsx'
-
 // Lazy load the main site so errors in App don't break the onboarding route
 const App = lazy(() => import('./App.tsx'))
 

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { PhoneOff, CalendarCheck, BarChart3 } from 'lucide-react'
+import { GlowCard } from '@/components/ui/spotlight-card'
 
 const blocks = [
   {
@@ -112,21 +113,15 @@ export default function Services() {
                   gap: '16px',
                 }}>
                   {block.features.map((f, j) => (
-                    <div
+                    <GlowCard
                       key={j}
-                      style={{
-                        background: 'rgba(255,255,255,0.03)',
-                        border: '1px solid rgba(255,255,255,0.06)',
-                        borderRadius: '16px',
-                        padding: '24px',
-                        transition: 'border-color 0.2s, background 0.2s',
-                      }}
-                      onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'; e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; }}
-                      onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'; e.currentTarget.style.background = 'rgba(255,255,255,0.03)'; }}
+                      glowColor={(['blue', 'purple', 'green'] as const)[i]}
+                      customSize
+                      className="!aspect-auto !grid-rows-none !p-6 !gap-0"
                     >
-                      <h4 style={{ fontSize: '15px', fontWeight: 700, color: '#fff', marginBottom: '8px', letterSpacing: '-0.2px' }}>{f.name}</h4>
-                      <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.38)', lineHeight: 1.65, margin: 0 }}>{f.desc}</p>
-                    </div>
+                      <h4 style={{ fontSize: '15px', fontWeight: 700, color: '#fff', marginBottom: '8px', letterSpacing: '-0.2px', position: 'relative', zIndex: 1 }}>{f.name}</h4>
+                      <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.38)', lineHeight: 1.65, margin: 0, position: 'relative', zIndex: 1 }}>{f.desc}</p>
+                    </GlowCard>
                   ))}
                 </div>
               </motion.div>

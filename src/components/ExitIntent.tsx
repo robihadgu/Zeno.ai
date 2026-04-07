@@ -104,25 +104,16 @@ export default function ExitIntent() {
               <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
 
-            {/* Alert triangle icon */}
-            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '24px' }}>
-              <div style={{
-                width: '56px',
-                height: '56px',
-                borderRadius: '16px',
-                background: 'linear-gradient(135deg, rgba(239,68,68,0.15), rgba(249,115,22,0.15))',
-                border: '1px solid rgba(239,68,68,0.25)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-                  <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="rgb(249,115,22)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <line x1="12" y1="9" x2="12" y2="13" stroke="rgb(249,115,22)" strokeWidth="2" strokeLinecap="round"/>
-                  <line x1="12" y1="17" x2="12.01" y2="17" stroke="rgb(249,115,22)" strokeWidth="2" strokeLinecap="round"/>
-                </svg>
-              </div>
-            </div>
+            {/* Animated illustration */}
+            <div style={{
+              height: '180px',
+              backgroundImage: 'url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif)',
+              backgroundSize: 'contain',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              marginBottom: '16px',
+              borderRadius: '12px',
+            }} />
 
             {/* Headline */}
             <h2 style={{
