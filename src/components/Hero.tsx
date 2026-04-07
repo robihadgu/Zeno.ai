@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrambleText from './ScrambleText';
 import { openBooking } from './BookingModal';
+import { fireConfetti } from './ConfettiBurst';
 import { SplineScene } from '@/components/ui/splite';
 import { Spotlight } from '@/components/ui/spotlight';
 
@@ -289,8 +290,10 @@ function SpeedTestDemo({ onClose }: { onClose: () => void }) {
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const robotRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [showDemo, setShowDemo] = useState(false);
+  const [celebrating, setCelebrating] = useState(false);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -299,6 +302,38 @@ export default function Hero() {
     return () => window.removeEventListener('resize', check);
   }, []);
 
+  /* ── Scroll-driven parallax for robot ──────────────────────────────────── */
+  useEffect(() => {
+    if (isMobile) return;
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        const el = robotRef.current;
+        const section = containerRef.current;
+        if (!el || !section) return;
+        const rect = section.getBoundingClientRect();
+        const progress = Math.max(0, Math.min(1, -rect.top / section.offsetHeight));
+        const y = progress * -40;
+        const scale = 1 + progress * 0.04;
+        el.style.transform = `translateY(${y.toFixed(1)}px) scale(${scale.toFixed(3)})`;
+      });
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [isMobile]);
+
+  /* ── CTA click → confetti + robot celebration ──────────────────────────── */
+  const handleCTAClick = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    fireConfetti(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    setCelebrating(true);
+    setTimeout(() => setCelebrating(false), 1200);
+    openBooking();
+  }, []);
 
   return (
     <section
@@ -392,7 +427,7 @@ export default function Hero() {
                 animation: 'gradient-shift 3s ease infinite',
                 width: isMobile ? '100%' : 'auto',
               }}>
-                <button onClick={openBooking} data-magnetic="true" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', background: '#fff', color: '#000', fontWeight: 700, fontSize: '14px', padding: '14px 28px', borderRadius: '13px', border: 'none', boxShadow: '0 4px 24px rgba(255,255,255,0.18)', transition: 'all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)', width: isMobile ? '100%' : 'auto' }}
+                <button onClick={handleCTAClick} data-magnetic="true" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', background: '#fff', color: '#000', fontWeight: 700, fontSize: '14px', padding: '14px 28px', borderRadius: '13px', border: 'none', boxShadow: '0 4px 24px rgba(255,255,255,0.18)', transition: 'all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)', width: isMobile ? '100%' : 'auto' }}
                   onMouseEnter={e => { const el = e.currentTarget; el.style.transform = 'translateY(-2px) scale(1.02)'; el.style.boxShadow = '0 8px 32px rgba(255,255,255,0.25)'; }}
                   onMouseLeave={e => { const el = e.currentTarget; el.style.transform = 'translateY(0) scale(1)'; el.style.boxShadow = '0 4px 24px rgba(255,255,255,0.18)'; }}
                 >
@@ -448,10 +483,36 @@ export default function Hero() {
               width: '100%',
             }}
           >
-            <SplineScene
-              scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-              className="w-full h-full"
-            />
+            <div
+              ref={robotRef}
+              style={{ width: '100%', height: '100%', willChange: 'transform', transition: 'transform 0.15s ease-out' }}
+            >
+              <SplineScene
+                scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                className="w-full h-full"
+              />
+            </div>
+
+            {/* Celebration glow pulse on CTA click */}
+            <AnimatePresence>
+              {celebrating && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.6 }}
+                  animate={{ opacity: [0, 0.8, 0], scale: [0.6, 1.3, 1.6] }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 1.2, ease: 'easeOut' }}
+                  style={{
+                    position: 'absolute', top: '50%', left: '50%',
+                    width: '300px', height: '300px',
+                    transform: 'translate(-50%, -50%)',
+                    borderRadius: '50%',
+                    background: 'radial-gradient(circle, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.08) 40%, transparent 70%)',
+                    pointerEvents: 'none',
+                    filter: 'blur(20px)',
+                  }}
+                />
+              )}
+            </AnimatePresence>
           </motion.div>
         </div>
       </div>
