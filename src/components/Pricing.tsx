@@ -7,21 +7,25 @@ type Billing = 'monthly' | 'annual';
 /* ─── Data ──────────────────────────────────────────────────────────────────── */
 
 const GROWTH_FEATURES = [
-  { icon: '💬', name: 'AI Missed-Call Text-Back',   desc: 'Responds to missed calls via text in under 4 seconds, 24/7' },
-  { icon: '🤖', name: 'AI Receptionist Chatbot',    desc: 'Handles website inquiries, qualifies leads, and answers FAQs automatically' },
-  { icon: '📅', name: 'Appointment Booking',         desc: 'Books directly into your calendar — no phone tag, no back-and-forth' },
-  { icon: '⭐', name: 'Review Generation',           desc: 'Automatically requests Google reviews after every appointment' },
-  { icon: '📊', name: 'Performance Dashboard',       desc: 'Monthly report: leads captured, bookings made, revenue recovered' },
-  { icon: '📱', name: 'Social DM Automation',        desc: 'Handles Instagram and Facebook DM inquiries automatically' },
+  { icon: '💬', name: 'Missed Call Text-Back',          desc: "Every missed call gets an instant SMS so leads don't bounce to competitors" },
+  { icon: '🤖', name: 'AI Receptionist (Basic)',        desc: 'Answers FAQs, books appointments, and collects lead info 24/7' },
+  { icon: '🌱', name: 'Lead Nurture Sequences',         desc: '7-day SMS + email follow-up for every new lead' },
+  { icon: '⭐', name: 'Reviews Automation',             desc: 'Auto-requests Google reviews after every appointment' },
+  { icon: '📅', name: 'Booking Calendar Integration',   desc: 'Syncs to your existing calendar — GHL, Calendly, Acuity, and more' },
+  { icon: '📊', name: 'Basic Reporting Dashboard',      desc: 'See leads captured, calls answered, and reviews collected at a glance' },
+  { icon: '✉️', name: 'Email Support',                  desc: '48-hour response time from the Zeno support team' },
 ];
 
 const ELITE_FEATURES = [
-  { icon: '🎙️', name: 'Custom AI Voice & Brand Training', desc: 'AI trained on your brand voice, services, pricing, and objection handling' },
-  { icon: '📞', name: 'Weekly Strategy Call',              desc: '30-min weekly call with your dedicated Zeno account manager' },
-  { icon: '👤', name: 'Dedicated Account Manager',        desc: 'A real person who knows your business — reachable by phone, text, and email' },
-  { icon: '💰', name: 'Revenue Attribution Dashboard',    desc: 'See which leads converted, which appointments booked, and revenue recovered' },
-  { icon: '📍', name: 'Google Business Automation',       desc: 'Handles inquiries that come directly through your Google Business Profile' },
-  { icon: '♾️', name: 'Unlimited SMS',                    desc: 'No caps, no overages — every message answered, no matter the volume' },
+  { icon: '🎙️', name: 'Full AI Voice Receptionist',      desc: 'Human-sounding AI answers every call, handles bookings, reschedules, pricing, objections, and transfers hot leads live to you' },
+  { icon: '🌊', name: 'Advanced Lead Nurture',           desc: 'Multi-channel (SMS + email + voicemail drops), behavior-triggered sequences up to 30 days long' },
+  { icon: '🔥', name: 'Database Reactivation Campaigns', desc: 'Wake up old leads and past clients automatically — usually pays for 6+ months in the first 30 days' },
+  { icon: '📆', name: 'No-Show & Reschedule Automation', desc: 'AI calls and texts no-shows, rebooks them, and protects your calendar' },
+  { icon: '🧠', name: 'Custom AI Knowledge Base',        desc: 'Trained on your services, pricing, policies, and brand voice' },
+  { icon: '⚙️', name: 'Pipeline & CRM Automation',       desc: 'Deals move themselves through stages and tasks auto-create as leads progress' },
+  { icon: '📱', name: 'Social DM Auto-Reply',            desc: 'Instagram & Facebook messages answered and booked instantly' },
+  { icon: '📞', name: 'Monthly Strategy Call',           desc: 'We review performance together and optimize your system every month' },
+  { icon: '🛟', name: 'Priority Support',                desc: 'Same-day response with a direct line straight to the team' },
 ];
 
 const ADD_ONS = [
