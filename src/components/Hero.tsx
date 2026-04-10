@@ -303,27 +303,21 @@ export default function Hero() {
     return () => window.removeEventListener('resize', check);
   }, []);
 
-  /* ── Scroll + global cursor parallax for robot ─────────────────────────── */
+  /* ── Scroll-only parallax for robot body ───────────────────────────────
+     The Spline scene itself handles head-tracking toward the cursor,
+     so we deliberately do NOT rotate or translate the wrapper on
+     mousemove — only the head should react, not the whole body. */
   useEffect(() => {
     if (isMobile) return;
     let ticking = false;
     let scrollProgress = 0;
-    // Cursor offset in [-1, 1] range, relative to window center
-    let cursorX = 0;
-    let cursorY = 0;
 
     const apply = () => {
       const el = robotRef.current;
       if (!el) return;
-      // Scroll-driven vertical drift + subtle zoom
       const scrollY = scrollProgress * -40;
       const scale = 1 + scrollProgress * 0.04;
-      // Global cursor lean — robot tilts toward cursor from anywhere on page
-      const rotY = cursorX * 14;   // yaw (left/right)
-      const rotX = -cursorY * 10;  // pitch (up/down, inverted)
-      const transX = cursorX * 14; // slight horizontal drift
-      const transY = cursorY * 10; // slight vertical drift
-      el.style.transform = `perspective(1200px) translate3d(${transX.toFixed(1)}px, ${(scrollY + transY).toFixed(1)}px, 0) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale(${scale.toFixed(3)})`;
+      el.style.transform = `translate3d(0, ${scrollY.toFixed(1)}px, 0) scale(${scale.toFixed(3)})`;
     };
 
     const schedule = () => {
@@ -343,19 +337,10 @@ export default function Hero() {
       schedule();
     };
 
-    const onMouseMove = (e: MouseEvent) => {
-      // Normalize cursor to [-1, 1] based on viewport center
-      cursorX = (e.clientX / window.innerWidth) * 2 - 1;
-      cursorY = (e.clientY / window.innerHeight) * 2 - 1;
-      schedule();
-    };
-
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('mousemove', onMouseMove, { passive: true });
     return () => {
       window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('mousemove', onMouseMove);
     };
   }, [isMobile]);
 

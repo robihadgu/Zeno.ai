@@ -60,11 +60,13 @@ function FadeUp({ children, delay = 0, style }: { children: React.ReactNode; del
 
 
 const DISCOUNT_PCT = 0.25;
-const applyDiscount = (price: number) => Math.round(price * (1 - DISCOUNT_PCT));
+// Prices in PlanDef are the CURRENT (already-discounted) prices customers pay.
+// The pre-discount number shown as strikethrough is derived: current / (1 - 0.25).
+const preDiscountPrice = (price: number) => Math.round(price / (1 - DISCOUNT_PCT));
 
 function AnimatedPrice({ monthly, annual, billing }: { monthly: number; annual: number; billing: Billing }) {
-  const originalPrice = billing === 'monthly' ? monthly : annual;
-  const price = applyDiscount(originalPrice);
+  const price = billing === 'monthly' ? monthly : annual;
+  const originalPrice = preDiscountPrice(price);
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'flex-start', gap: '4px', lineHeight: 1 }}>
@@ -80,12 +82,15 @@ function AnimatedPrice({ monthly, annual, billing }: { monthly: number; annual: 
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '-2px', marginBottom: '6px' }}>
         <span style={{ fontSize: '16px', color: 'rgba(255,255,255,0.4)', textDecoration: 'line-through', textDecorationColor: 'rgba(255,80,80,0.7)' }}>
-          ${originalPrice}/mo
+          ${originalPrice.toLocaleString()}/mo
         </span>
         <span style={{ fontSize: '10px', fontWeight: 800, color: '#4ade80', background: 'rgba(74,222,128,0.12)', border: '1px solid rgba(74,222,128,0.35)', borderRadius: '999px', padding: '3px 9px', textTransform: 'uppercase', letterSpacing: '1px' }}>
           25% OFF
         </span>
       </div>
+      <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.4)', margin: '0 0 10px' }}>
+        Was <span style={{ textDecoration: 'line-through' }}>${originalPrice.toLocaleString()}/mo</span> — you save ${(originalPrice - price).toLocaleString()}/mo with our limited-time 25% launch discount.
+      </p>
     </div>
   );
 }
