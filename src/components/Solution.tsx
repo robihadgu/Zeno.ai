@@ -92,7 +92,7 @@ function ChatbotUI() {
     { from: 'user', text: 'Hi! What services do you offer?' },
     { from: 'bot',  text: 'Great question! We offer missed-call recovery, 24/7 AI chat, appointment booking, and review automation. New clients get a free 14-day trial 🎉' },
     { from: 'user', text: 'How do I get started?' },
-    { from: 'bot',  text: "Easy! Book a free 20-min demo and we'll have your system live in 7 days. Want me to grab a time? 😊" },
+    { from: 'bot',  text: "Easy! Book a free 20-min demo and we'll have your system live in 3 days. Want me to grab a time? 😊" },
   ];
   return (
     <TiltPanel style={{ padding: 0 }}>

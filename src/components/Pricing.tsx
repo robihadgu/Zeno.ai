@@ -26,7 +26,6 @@ const ELITE_FEATURES = [
 
 const ADD_ONS = [
   { name: 'Extra SMS',                  price: '+$15/mo',       sub: 'per 1,000 messages' },
-  { name: 'LinkedIn Outreach',          price: '+$197/mo',      sub: 'automated outreach' },
   { name: 'Additional Location',        price: '+$297/mo',      sub: 'per location' },
   { name: 'Custom AI Agent Build',      price: 'From $1,500',   sub: 'one-time build' },
 ];
@@ -41,7 +40,7 @@ const FAQS = [
   { q: 'Do you work with my existing booking software?',
     a: 'Yes. Zeno integrates with Google Calendar, Calendly, Acuity, HubSpot, Stripe, Square Appointments, Vagaro, and 20+ other platforms.' },
   { q: 'How long does setup take?',
-    a: 'Most clients are fully live within 7 business days of their discovery call. We handle everything — you just show up to your business as usual.' },
+    a: 'Most clients are fully live within 3 business days of their discovery call. We handle everything — you just show up to your business as usual.' },
   { q: 'What if I need more SMS than my plan includes?',
     a: 'Additional SMS are available at $15 per 1,000 messages, billed monthly. Elite clients have unlimited SMS with no overages.' },
 ];
@@ -60,19 +59,33 @@ function FadeUp({ children, delay = 0, style }: { children: React.ReactNode; del
 }
 
 
+const DISCOUNT_PCT = 0.25;
+const applyDiscount = (price: number) => Math.round(price * (1 - DISCOUNT_PCT));
+
 function AnimatedPrice({ monthly, annual, billing }: { monthly: number; annual: number; billing: Billing }) {
-  const price = billing === 'monthly' ? monthly : annual;
+  const originalPrice = billing === 'monthly' ? monthly : annual;
+  const price = applyDiscount(originalPrice);
   return (
-    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '4px', lineHeight: 1 }}>
-      <span style={{ fontSize: '22px', fontWeight: 700, color: 'rgba(255,255,255,0.5)', alignSelf: 'flex-end', marginBottom: '14px' }}>$</span>
-      <AnimatePresence mode="wait">
-        <motion.span key={price} initial={{ opacity: 0, y: -18 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 18 }}
-          transition={{ duration: 0.22, ease: 'easeOut' }}
-          style={{ fontSize: 'clamp(56px, 12vw, 96px)', fontWeight: 800, color: '#fff', letterSpacing: '-5px', display: 'block' }}>
-          {price}
-        </motion.span>
-      </AnimatePresence>
-      <span style={{ fontSize: '15px', color: 'rgba(255,255,255,0.35)', alignSelf: 'flex-end', marginBottom: '14px' }}>/mo</span>
+    <div>
+      <div style={{ display: 'flex', alignItems: 'flex-start', gap: '4px', lineHeight: 1 }}>
+        <span style={{ fontSize: '22px', fontWeight: 700, color: 'rgba(255,255,255,0.5)', alignSelf: 'flex-end', marginBottom: '14px' }}>$</span>
+        <AnimatePresence mode="wait">
+          <motion.span key={price} initial={{ opacity: 0, y: -18 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 18 }}
+            transition={{ duration: 0.22, ease: 'easeOut' }}
+            style={{ fontSize: 'clamp(56px, 12vw, 96px)', fontWeight: 800, color: '#fff', letterSpacing: '-5px', display: 'block' }}>
+            {price}
+          </motion.span>
+        </AnimatePresence>
+        <span style={{ fontSize: '15px', color: 'rgba(255,255,255,0.35)', alignSelf: 'flex-end', marginBottom: '14px' }}>/mo</span>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '-2px', marginBottom: '6px' }}>
+        <span style={{ fontSize: '16px', color: 'rgba(255,255,255,0.4)', textDecoration: 'line-through', textDecorationColor: 'rgba(255,80,80,0.7)' }}>
+          ${originalPrice}/mo
+        </span>
+        <span style={{ fontSize: '10px', fontWeight: 800, color: '#4ade80', background: 'rgba(74,222,128,0.12)', border: '1px solid rgba(74,222,128,0.35)', borderRadius: '999px', padding: '3px 9px', textTransform: 'uppercase', letterSpacing: '1px' }}>
+          25% OFF
+        </span>
+      </div>
     </div>
   );
 }
@@ -170,7 +183,7 @@ function PricingCard({ plan, isElite, billing }: { plan: PlanDef; isElite?: bool
           Start Your Free 14-Day Trial
           <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
-        <p style={{ textAlign: 'center', fontSize: '12px', color: '#999' }}>🛡 No contracts · Cancel anytime · Live in 7 days</p>
+        <p style={{ textAlign: 'center', fontSize: '12px', color: '#999' }}>🛡 No contracts · Cancel anytime · Live in 3 days</p>
       </div>
     </div>
   );
@@ -236,6 +249,21 @@ export default function Pricing() {
             </div>
           </FadeUp>
 
+          <FadeUp delay={0.04}>
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', gap: '10px',
+              background: 'linear-gradient(135deg, rgba(74,222,128,0.15) 0%, rgba(34,197,94,0.08) 100%)',
+              border: '1px solid rgba(74,222,128,0.4)',
+              borderRadius: '999px', padding: '7px 18px', marginBottom: '20px',
+              boxShadow: '0 0 24px rgba(74,222,128,0.15)',
+            }}>
+              <span style={{ fontSize: '14px' }}>🎉</span>
+              <span style={{ fontSize: '12px', fontWeight: 700, color: '#4ade80', textTransform: 'uppercase', letterSpacing: '1.2px' }}>
+                Limited-Time Launch Discount — 25% OFF All Plans
+              </span>
+            </div>
+          </FadeUp>
+
           <FadeUp delay={0.06}>
             <h1 style={{ fontSize: 'clamp(44px, 6vw, 72px)', fontWeight: 800, color: '#fff', letterSpacing: '-2.5px', lineHeight: 1.05, marginBottom: '22px' }}>
               Transparent pricing.<br />Real results.
@@ -267,12 +295,27 @@ export default function Pricing() {
         <FadeUp delay={0.08}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '16px', padding: '16px 28px' }}>
             <span style={{ fontSize: '14px', fontWeight: 600, color: 'rgba(255,255,255,0.75)' }}>⚡ One-time Setup Fee</span>
-            <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.38)' }}>$500 — covers full system build, AI training, and go-live in 7 days</span>
+            <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.38)' }}>$500 — covers full system build, AI training, and go-live in 3 days</span>
           </div>
         </FadeUp>
       </div>
 
       {/* ── SECTION 3 — PRICING CARDS ── */}
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px 24px' }}>
+        <FadeUp>
+          <p style={{
+            textAlign: 'center',
+            fontSize: 'clamp(16px, 1.8vw, 20px)',
+            fontWeight: 600,
+            color: 'rgba(255,255,255,0.82)',
+            fontStyle: 'italic',
+            letterSpacing: '-0.3px',
+            margin: '0 0 32px',
+          }}>
+            &ldquo;Growth plugs the leaks. <span style={{ color: '#fff' }}>Elite replaces your front desk.</span>&rdquo;
+          </p>
+        </FadeUp>
+      </div>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px 88px' }}>
         <div style={{ display: 'flex', gap: '24px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
           <FadeUp delay={0} style={{ flex: 1, minWidth: '300px' }}>
@@ -282,6 +325,17 @@ export default function Pricing() {
             <PricingCard plan={elite} isElite billing={billing} />
           </FadeUp>
         </div>
+        <FadeUp delay={0.25}>
+          <p style={{
+            textAlign: 'center',
+            fontSize: '14px',
+            fontWeight: 500,
+            color: 'rgba(255,255,255,0.5)',
+            marginTop: '28px',
+          }}>
+            &ldquo;Growth plugs the leaks. Elite replaces your front desk.&rdquo;
+          </p>
+        </FadeUp>
       </div>
 
       {/* ── SECTION 4 — ADD-ONS ── */}
@@ -323,7 +377,7 @@ export default function Pricing() {
           <div style={{ maxWidth: '960px', margin: '0 auto', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
             {[
               { h: '14-Day Free Trial',       s: 'No credit card required'         },
-              { h: 'Live in 7 Days',           s: 'Full setup and go-live'           },
+              { h: 'Live in 3 Days',           s: 'Full setup and go-live'           },
               { h: 'No Long-Term Contracts',   s: 'Cancel anytime'                  },
               { h: 'Real Support',             s: 'A real person, not a ticket'     },
             ].map((item, i, arr) => (

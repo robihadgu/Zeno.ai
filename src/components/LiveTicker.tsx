@@ -4,7 +4,7 @@ const TICKER_ITEMS = [
   '⭐ Priya in Reston went from 43 to 201 Google reviews',
   '💬 Missed call recovered in 4 seconds — Northern Virginia',
   '📞 Melissa in Tysons cut front-desk calls by 60%',
-  '🚀 New client live in 7 days — no disruption to workflow',
+  '🚀 New client live in 3 days — no disruption to workflow',
 ];
 
 const DIVIDER = ' · ';

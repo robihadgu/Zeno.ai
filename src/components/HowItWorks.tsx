@@ -19,7 +19,7 @@ const steps = [
     num: '03',
     icon: Rocket,
     title: 'Go Live',
-    desc: 'Launch in 7 days. We monitor, optimize, and handle everything.',
+    desc: 'Launch in 3 days. We monitor, optimize, and handle everything.',
   },
 ];
 
@@ -53,7 +53,7 @@ export default function HowItWorks() {
             fontSize: 'clamp(32px, 4.5vw, 52px)', fontWeight: 800,
             color: '#fff', letterSpacing: '-2px', lineHeight: 1.1, marginBottom: '18px',
           }}>
-            Live in 7 days. Three steps.
+            Live in 3 days. Three steps.
           </h2>
           <p style={{ fontSize: '17px', color: 'rgba(255,255,255,0.38)', maxWidth: '400px', margin: '0 auto', lineHeight: 1.7 }}>
             You give us 30 minutes. We do the rest.

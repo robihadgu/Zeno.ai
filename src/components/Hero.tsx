@@ -303,28 +303,60 @@ export default function Hero() {
     return () => window.removeEventListener('resize', check);
   }, []);
 
-  /* ── Scroll-driven parallax for robot ──────────────────────────────────── */
+  /* ── Scroll + global cursor parallax for robot ─────────────────────────── */
   useEffect(() => {
     if (isMobile) return;
     let ticking = false;
-    const onScroll = () => {
+    let scrollProgress = 0;
+    // Cursor offset in [-1, 1] range, relative to window center
+    let cursorX = 0;
+    let cursorY = 0;
+
+    const apply = () => {
+      const el = robotRef.current;
+      if (!el) return;
+      // Scroll-driven vertical drift + subtle zoom
+      const scrollY = scrollProgress * -40;
+      const scale = 1 + scrollProgress * 0.04;
+      // Global cursor lean — robot tilts toward cursor from anywhere on page
+      const rotY = cursorX * 14;   // yaw (left/right)
+      const rotX = -cursorY * 10;  // pitch (up/down, inverted)
+      const transX = cursorX * 14; // slight horizontal drift
+      const transY = cursorY * 10; // slight vertical drift
+      el.style.transform = `perspective(1200px) translate3d(${transX.toFixed(1)}px, ${(scrollY + transY).toFixed(1)}px, 0) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale(${scale.toFixed(3)})`;
+    };
+
+    const schedule = () => {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => {
         ticking = false;
-        const el = robotRef.current;
-        const section = containerRef.current;
-        if (!el || !section) return;
-        const rect = section.getBoundingClientRect();
-        const progress = Math.max(0, Math.min(1, -rect.top / section.offsetHeight));
-        const y = progress * -40;
-        const scale = 1 + progress * 0.04;
-        el.style.transform = `translateY(${y.toFixed(1)}px) scale(${scale.toFixed(3)})`;
+        apply();
       });
     };
+
+    const onScroll = () => {
+      const section = containerRef.current;
+      if (!section) return;
+      const rect = section.getBoundingClientRect();
+      scrollProgress = Math.max(0, Math.min(1, -rect.top / section.offsetHeight));
+      schedule();
+    };
+
+    const onMouseMove = (e: MouseEvent) => {
+      // Normalize cursor to [-1, 1] based on viewport center
+      cursorX = (e.clientX / window.innerWidth) * 2 - 1;
+      cursorY = (e.clientY / window.innerHeight) * 2 - 1;
+      schedule();
+    };
+
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('mousemove', onMouseMove);
+    };
   }, [isMobile]);
 
   /* ── CTA click → confetti + robot celebration ──────────────────────────── */
@@ -444,7 +476,7 @@ export default function Hero() {
               transition={{ delay: 0.5, duration: 0.7 }}
               style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap', marginBottom: '28px' }}
             >
-              {['No long-term contracts', 'Live in 7 days', '14-day free trial'].map((item, i) => (
+              {['No long-term contracts', 'Live in 3 days', '14-day free trial'].map((item, i) => (
                 <span key={i} style={{ fontSize: '12px', color: 'rgba(255,255,255,0.35)', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '5px' }}>
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="rgba(255,255,255,0.5)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                   {item}
@@ -486,7 +518,7 @@ export default function Hero() {
           >
             <div
               ref={robotRef}
-              style={{ width: '100%', height: '100%', willChange: 'transform', transition: 'transform 0.15s ease-out', position: 'relative', overflow: 'hidden' }}
+              style={{ width: '100%', height: '100%', willChange: 'transform', transition: 'transform 0.3s cubic-bezier(0.22, 1, 0.36, 1)', position: 'relative', overflow: 'hidden', transformStyle: 'preserve-3d' }}
             >
               <CursorSpotlight size={300} springOptions={{ bounce: 0, damping: 30, stiffness: 200 }} />
               <SplineScene
